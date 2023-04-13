@@ -58,8 +58,13 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 velocity = new Vector2(movementInput.x * movementSpeed * Time.fixedDeltaTime, body.velocity.y);
+        Vector2 velocity = body.velocity;
 
+        if (movementInput.x != 0)
+        {
+            velocity = new Vector2(movementInput.x * movementSpeed * Time.fixedDeltaTime, body.velocity.y);
+        }
+        
         if (wantsToJump)
         {
             if (IsGrounded())
