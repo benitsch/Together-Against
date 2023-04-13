@@ -73,7 +73,7 @@ public class CharacterMovement : MonoBehaviour
         body.velocity = Vector3.SmoothDamp(body.velocity, velocity, ref currentVelocity, movementSmoothing);
     }
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         Collider2D colliders = Physics2D.OverlapCircle(groundCheckPosition.position, groundCheckRadius, groundLayer);
 
