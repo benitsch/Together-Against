@@ -13,7 +13,7 @@ public class ButtonBehavior : MonoBehaviour
     [SerializeField] private Activateable activateable;
 
     private SpriteRenderer spriteRenderer;
-    private bool isPressed = false;
+    [SerializeField] private bool isPressed = false;
 
     void Start()
     {
