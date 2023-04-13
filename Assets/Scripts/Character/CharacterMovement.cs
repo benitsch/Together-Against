@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class CharacterMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] [Range(100, 500)] private float movementSpeed = 200f;
@@ -15,13 +15,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] [Range(0.001f, 1f)] private float groundCheckRadius = 0.1f;
     [SerializeField] private LayerMask groundLayer;
 
-    [Header("Art")]
-    [SerializeField] private SpriteRenderer sp;
-
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D body;
 
-    public Vector2 input =  Vector2.zero;
+    private Vector2 movementInput =  Vector2.zero;
 
     public bool canEverJump = true;
     private bool wantsToJump = false;
@@ -43,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spriteRenderer.flipX = input.x > 0;
+        spriteRenderer.flipX = movementInput.x < 0;
     }
 
     public void Jump()
@@ -54,9 +51,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void AddMovementInput(Vector2 input)
+    {
+        movementInput = input;
+    }
+
     private void FixedUpdate()
     {
-        Vector2 velocity = new Vector2(input.x * movementSpeed * Time.fixedDeltaTime, body.velocity.y);
+        Vector2 velocity = new Vector2(movementInput.x * movementSpeed * Time.fixedDeltaTime, body.velocity.y);
 
         if (wantsToJump)
         {
