@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 200
-  jumpForce: 2
+  jumpForce: 6
   movementSmoothing: 0
   groundCheckPosition: {fileID: 3151410590605764962}
   groundCheckRadius: 0.1
