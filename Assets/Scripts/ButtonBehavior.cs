@@ -10,6 +10,8 @@ public class ButtonBehavior : MonoBehaviour
     //public Sprite offSprite;
     //public AudioClip pressSound; // The sound when the button is pressed
 
+    [SerializeField] private Activateable activateable;
+
     private SpriteRenderer spriteRenderer;
     private bool isPressed = false;
 
@@ -23,6 +25,16 @@ public class ButtonBehavior : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             isPressed = !isPressed;
+            if (activateable != null)
+            {
+                if (isPressed)
+                {
+                    activateable.Activate();
+                } else
+                {
+                    activateable.Deactivate();
+                }
+            }
             //spriteRenderer.sprite = isPressed ? onSprite : offSprite;
             Debug.Log("Pressed!");
             //AudioSource.PlayClipAtPoint(pressSound, transform.position);
