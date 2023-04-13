@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Art")]
     [SerializeField] private SpriteRenderer sp;
-    [SerializeField] private bool facingRight = true;
 
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D body;
