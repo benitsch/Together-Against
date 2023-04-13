@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Activateable : MonoBehaviour
 {
-    private int Counter = 0;
+    [SerializeField]
+    public int Counter = 0;
     // Start is called before the first frame update
     public void Activate()
     {
