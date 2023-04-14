@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8257631392867097374, guid: add0a41c75baab04b919ebcecba7d5bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.906066
+      value: -3.75
       objectReference: {fileID: 0}
     - target: {fileID: 8257631392867097374, guid: add0a41c75baab04b919ebcecba7d5bb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -305,6 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playSceneName: Main
   instructionsSceneName: Main
+  levelSelectSceneName: 
   creditsSceneName: Main
 --- !u!1001 &375807359
 PrefabInstance:
@@ -319,7 +320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5216883396063736194, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.414873
+      value: -3.93
       objectReference: {fileID: 0}
     - target: {fileID: 5216883396063736194, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
       propertyPath: m_LocalPosition.y
