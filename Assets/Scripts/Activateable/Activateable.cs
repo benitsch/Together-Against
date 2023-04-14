@@ -1,38 +1,81 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ActivationRequirementMode
+{
+    OnlyOne,
+    All
+}
+public delegate void OnIsActivatedChangedDelegate(Activateable a, bool isActive);
 public class Activateable : MonoBehaviour
 {
     [SerializeField]
+    private List<Interactable> LinkedInteractables = new List<Interactable>();
+    OnIsActivatedChangedDelegate OnIsActivatedChanged;
+    public ActivationRequirementMode ActivationMode;
+
+    [SerializeField]
     private int Counter = 0;
-    // Start is called before the first frame update
-    public void Activate()
+    public bool IsActivated = false;
+
+    void Activate()
     {
-        this.Counter++;
-        if(this.Counter == 1)
-        {
-            this.Activate_Implementation();
-        }
+        Activate_Implementation();
+        OnIsActivatedChanged?.Invoke(this, IsActivated);
+    }
+
+    void Deactivate()
+    {
+        Deactivate_Implementation();
+        OnIsActivatedChanged?.Invoke(this, IsActivated);
     }
 
     protected virtual void Activate_Implementation()
     {
+        
+    }
+
+    protected virtual void Deactivate_Implementation()
+    {
 
     }
 
-    public void Deactivate()
+    public void LinkUp(Interactable i)
     {
-        this.Counter--;
-        Debug.Assert(this.Counter >= 0);
-        if(this.Counter == 0)
+        LinkedInteractables.Add(i);
+        i.OnActivationStateChanged += NotifyInteractableActiveChanged;
+    }
+
+    private void NotifyInteractableActiveChanged(Interactable i, bool isActive)
+    {
+        if (LinkedInteractables.Contains(i))
         {
-            this.Dectivate_Implementation();
+            if (isActive)
+            {
+                this.Counter++;
+                if (ActivationMode == ActivationRequirementMode.OnlyOne && this.Counter == 1)
+                {
+                    this.Activate();
+                }
+                else if (ActivationMode == ActivationRequirementMode.All && this.Counter == LinkedInteractables.Count)
+                {
+                    this.Activate();
+                }
+            }
+            else if (!isActive)
+            {
+                this.Counter--;
+                if (ActivationMode == ActivationRequirementMode.OnlyOne && this.Counter == 0)
+                {
+                    this.Deactivate();
+                }
+                else if (ActivationMode == ActivationRequirementMode.All && this.Counter < LinkedInteractables.Count)
+                {
+                    this.Deactivate();
+                }
+            }
         }
-    }
-
-    protected virtual void Dectivate_Implementation()
-    {
-
     }
 }

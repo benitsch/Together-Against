@@ -21,7 +21,7 @@ public class Laser : Activateable
         gameObject.SetActive(!StartActive);
     }
 
-    protected override void Dectivate_Implementation()
+    protected override void Deactivate_Implementation()
     {
         gameObject.SetActive(StartActive);
     }
