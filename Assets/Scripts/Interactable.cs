@@ -10,7 +10,7 @@ public class Interactable : MonoBehaviour
 
     [SerializeField]
     private List<Activateable> Activateables = new List<Activateable>();
-    private void Awake()
+    protected virtual void Awake()
     {
         foreach (Activateable a in Activateables)
         {

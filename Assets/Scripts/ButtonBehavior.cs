@@ -16,8 +16,9 @@ public class ButtonBehavior : Interactable
 
     private int pressedCounter = 0; 
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
