@@ -62,10 +62,6 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spriteRenderer.flipX = movementInput.x < 0;
-        Debug.Assert(animator != null);
-        Debug.Assert(body != null);
-        Debug.Log(body.velocity.x);
         animator.SetFloat("speed", Math.Abs(body.velocity.x));
     }
 
