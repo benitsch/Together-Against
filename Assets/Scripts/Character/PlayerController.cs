@@ -147,10 +147,4 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(pickupScanLocation.position, 100);
-    }
 }
