@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void OnUseKeyPressedDelegate();
 public class PlayerController : MonoBehaviour
 {
     [Header("Controls")]
@@ -10,6 +11,16 @@ public class PlayerController : MonoBehaviour
     public KeyCode upKey = KeyCode.W;
     public KeyCode downKey = KeyCode.S;
     public KeyCode useKey = KeyCode.E;
+
+    public OnUseKeyPressedDelegate OnUseKeyPressed;
+
+    Pickup pickedUp = null;
+
+    public Transform pickupSlotLocation;
+    public float pickupScanRadius;
+
+    public LayerMask pickupsLayerMask;
+    public LayerMask interactableLayerMask;
 
     CharacterMovement movement;
 
@@ -35,7 +46,43 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(useKey))
         {
+            OnUseKeyPressed?.Invoke();
+            if(!TryPickup())
+            {
+                TryInteract();
+            }
+        }
+    }
 
+    bool TryPickup()
+    {
+        /*
+        Collider2D[] overlaps = Physics2D.OverlapCircleAll(pickupSlotLocation.position, pickupScanRadius, pickupsLayerMask);
+        foreach(Collider2D coll in overlaps)
+        {
+            if(coll.gameObject == gameObject)
+            {
+                continue;
+            }
+        }
+        */
+        return false;
+    }
+
+    void TryInteract()
+    {
+        Collider2D[] overlaps = Physics2D.OverlapCircleAll(transform.position, pickupScanRadius, interactableLayerMask);
+        foreach (Collider2D coll in overlaps)
+        {
+            if (coll.gameObject == gameObject)
+            {
+                continue;
+            }
+            Interactable i = coll.GetComponent<Interactable>();
+            if (i != null)
+            {
+                i.Interact(this);
+            }
         }
     }
 }

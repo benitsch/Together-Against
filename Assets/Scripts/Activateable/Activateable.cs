@@ -11,14 +11,12 @@ public enum ActivationRequirementMode
 public delegate void OnIsActivatedChangedDelegate(Activateable a, bool isActive);
 public class Activateable : MonoBehaviour
 {
-    [SerializeField]
     private List<Interactable> LinkedInteractables = new List<Interactable>();
     OnIsActivatedChangedDelegate OnIsActivatedChanged;
     public ActivationRequirementMode ActivationMode;
 
-    [SerializeField]
     private int Counter = 0;
-    public bool IsActivated = false;
+    public bool IsActivated { private set; get;} = false;
     public bool CanEverBeActivated { private set; get; } = false;
     public void Activate()
     {
@@ -68,6 +66,7 @@ public class Activateable : MonoBehaviour
             }
             else if (!isActive)
             {
+                Debug.Assert(LinkedInteractables.Contains(i));
                 this.Counter--;
                 if (ActivationMode == ActivationRequirementMode.OnlyOne && this.Counter == 0)
                 {

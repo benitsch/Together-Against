@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonBehavior : MonoBehaviour
+public class ButtonBehavior : Interactable
 {
     //TODO sprites for pressed and released & sound when art is ready
 
     //public Sprite onSprite; // The Sprite for button pressed
     //public Sprite offSprite;
-    //public AudioClip pressSound; // The sound when the button is pressed
-
-    [SerializeField] private Activateable activateable;
+    [SerializeField] private AudioClip pressSound; // The sound when the button is pressed
 
     private SpriteRenderer spriteRenderer;
     [SerializeField] private bool isPressed = false;
+
+    private int pressedCounter = 0; 
 
     void Start()
     {
@@ -24,20 +24,27 @@ public class ButtonBehavior : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            isPressed = !isPressed;
-            if (activateable != null)
+            pressedCounter++;
+            if(pressedCounter == 1)
             {
-                if (isPressed)
-                {
-                    activateable.Activate();
-                } else
-                {
-                    activateable.Deactivate();
-                }
+                SetActiveState(true);
             }
             //spriteRenderer.sprite = isPressed ? onSprite : offSprite;
-            Debug.Log("Pressed!");
-            //AudioSource.PlayClipAtPoint(pressSound, transform.position);
+            AudioSource.PlayClipAtPoint(pressSound, transform.position);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            pressedCounter--;
+            if(pressedCounter == 0)
+            {
+                SetActiveState(false);
+            }
+            //spriteRenderer.sprite = isPressed ? onSprite : offSprite;
+            AudioSource.PlayClipAtPoint(pressSound, transform.position);
         }
     }
 }

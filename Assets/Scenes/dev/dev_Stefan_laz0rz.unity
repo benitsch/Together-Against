@@ -278,8 +278,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e458804ce298e3443af535213420b998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activateable: {fileID: 1041555345}
+  Activateables: []
   isPressed: 0
+  pressedCounter: 0
 --- !u!61 &628057371
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -306,17 +307,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &1041555345 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9082812272098933310, guid: a62c5f02753101043b01d5f59b4d4935, type: 3}
-  m_PrefabInstance: {fileID: 1186730457}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b4fa3fa795de4a46872e09bee54b165, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1186730457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -380,6 +370,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9082812272098933310, guid: a62c5f02753101043b01d5f59b4d4935, type: 3}
+      propertyPath: LinkedInteractables.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082812272098933310, guid: a62c5f02753101043b01d5f59b4d4935, type: 3}
+      propertyPath: LinkedInteractables.Array.data[0]
+      value: 
+      objectReference: {fileID: 628057370}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62c5f02753101043b01d5f59b4d4935, type: 3}
 --- !u!1 &1265945490
