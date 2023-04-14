@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
 
     bool TryPickup()
     {
+        /*
         Collider2D[] overlaps = Physics2D.OverlapCircleAll(pickupSlotLocation.position, pickupScanRadius, pickupsLayerMask);
         foreach(Collider2D coll in overlaps)
         {
@@ -64,12 +65,13 @@ public class PlayerController : MonoBehaviour
                 continue;
             }
         }
+        */
         return false;
     }
 
     void TryInteract()
     {
-        Collider2D[] overlaps = Physics2D.OverlapCircleAll(pickupSlotLocation.position, pickupScanRadius, interactableLayerMask);
+        Collider2D[] overlaps = Physics2D.OverlapCircleAll(transform.position, pickupScanRadius, interactableLayerMask);
         foreach (Collider2D coll in overlaps)
         {
             if (coll.gameObject == gameObject)
