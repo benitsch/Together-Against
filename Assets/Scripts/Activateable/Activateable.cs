@@ -19,7 +19,7 @@ public class Activateable : MonoBehaviour
     [SerializeField]
     private int Counter = 0;
     public bool IsActivated = false;
-
+    public bool CanEverBeActivated { private set; get; } = false;
     public void Activate()
     {
         Activate_Implementation();
@@ -46,12 +46,14 @@ public class Activateable : MonoBehaviour
     {
         LinkedInteractables.Add(i);
         i.OnActivationStateChanged += NotifyInteractableActiveChanged;
+        CanEverBeActivated = true;
     }
 
     private void NotifyInteractableActiveChanged(Interactable i, bool isActive)
     {
-        if (LinkedInteractables.Contains(i))
+        if (CanEverBeActivated)
         {
+            Debug.Assert(LinkedInteractables.Contains(i));
             if (isActive)
             {
                 this.Counter++;
