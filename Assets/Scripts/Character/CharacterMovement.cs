@@ -19,7 +19,7 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody2D body;
 
     private Vector2 movementInput =  Vector2.zero;
-
+    
     public bool canEverJump = true;
     private bool wantsToJump = false;
 
@@ -58,14 +58,14 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         Vector2 velocity = body.velocity;
         Vector2 oldVeocity = velocity;
+
         if (movementInput.x != 0)
         {
             velocity = new Vector2(movementInput.x * movementSpeed * Time.fixedDeltaTime, body.velocity.y);
         }
-        
+
         if (wantsToJump)
         {
             if (IsGrounded())
@@ -78,15 +78,25 @@ public class CharacterMovement : MonoBehaviour
 
         body.velocity = Vector3.SmoothDamp(body.velocity, velocity, ref currentVelocity, movementSmoothing);
 
-        if(oldVeocity.x != velocity.x)
+        if (oldVeocity.x != velocity.x)
         {
             transform.Rotate(new Vector3(0, 180, 0));
         }
+        if(movementInput.x != 0)
+        {
+            transform.rotation = movementInput.x > 0 ? Quaternion.Euler(0, 0f, 0) : Quaternion.Euler(0, 180f, 0);
+        }
+         
     }
 
     public bool IsGrounded()
     {
+        int oldLayer = gameObject.layer; // This variable now stored our original layer
+        gameObject.layer = 2; // The game object will now ignore all forms of raycasting
+
         Collider2D colliders = Physics2D.OverlapCircle(groundCheckPosition.position, groundCheckRadius, groundLayer);
+
+        gameObject.layer = oldLayer;
 
         return colliders != null;
     }
