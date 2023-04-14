@@ -239,7 +239,6 @@ GameObject:
   - component: {fileID: 8633713224930894646}
   - component: {fileID: 5558227463958204841}
   - component: {fileID: 127168188087882980}
-  - component: {fileID: 3790255582240642407}
   m_Layer: 3
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -284,6 +283,14 @@ MonoBehaviour:
   upKey: 119
   downKey: 115
   useKey: 101
+  pickupSlotLocation: {fileID: 1187182804909944127}
+  pickupScanRadius: 0
+  pickupsLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  interactableLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &2877887183754001763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,16 +361,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28241802d2838f14d940aa378eeafc12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3790255582240642407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8097768310422812657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d580eafcff6e6844a0e9bcc74aff905, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupSlotLocation: {fileID: 0}
