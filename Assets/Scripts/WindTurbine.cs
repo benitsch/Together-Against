@@ -7,8 +7,7 @@ using UnityEngine;
  */
 public class WindTurbine : MonoBehaviour
 {
-    public Transform player;
-    public Transform player2;
+    public GameObject[] players;
     private AudioSource audioSource;
 
     public float maxVolume = 1f;
@@ -16,16 +15,20 @@ public class WindTurbine : MonoBehaviour
     public float maxDistance = 5f;
     public float minDistance = 1f;
 
-    void Start()
+    private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.volume = 1f;
+    }
+    void Start()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
+        Debug.Log(players);
     }
 
     void Update()
     {
-        float distance = Vector2.Distance(transform.position, player.position);
-        float distance2 = Vector2.Distance(transform.position, player2.position);
+        float distance = Vector2.Distance(transform.position, players[0].gameObject.transform.position);
+        float distance2 = Vector2.Distance(transform.position, players[1].transform.position);
         float volume = Mathf.Lerp(maxVolume, minVolume, (distance - minDistance) / (maxDistance - minDistance));
         float volume2 = Mathf.Lerp(maxVolume, minVolume, (distance2 - minDistance) / (maxDistance - minDistance));
         audioSource.volume = Mathf.Max(volume, volume2);
