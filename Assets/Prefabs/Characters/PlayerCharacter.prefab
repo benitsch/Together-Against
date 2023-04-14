@@ -367,7 +367,7 @@ MonoBehaviour:
   groundCheckRadius: 0.301
   groundLayer:
     serializedVersion: 2
-    m_Bits: 200
+    m_Bits: 1224
   canEverJump: 1
 --- !u!50 &8633713224930894646
 Rigidbody2D:
