@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +13,15 @@ public class PlayerController : MonoBehaviour
     public KeyCode downKey = KeyCode.S;
     public KeyCode useKey = KeyCode.E;
 
+    [ReadOnly] public bool movementControlsLocked = false;
+
     public OnUseKeyPressedDelegate OnUseKeyPressed;
 
-    Pickup pickedUp = null;
-
+    [ReadOnly, SerializeField] private Pickup pickedUpItem = null;
+    public Pickup MyPickup;
     public Transform pickupSlotLocation;
-    public float pickupScanRadius;
+    public Transform pickupScanLocation;
+    [Range(0.1f, 1.0f)] public float pickupScanRadius;
 
     public LayerMask pickupsLayerMask;
     public LayerMask interactableLayerMask;
@@ -26,6 +30,12 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        Pickup myPickup = GetComponent<Pickup>();
+        if(MyPickup)
+        {
+            myPickup.OnPickedUp += NotifyPickedUp;
+            myPickup.OnDropped += NotifySelfDropped;
+        }
         movement = GetComponent<CharacterMovement>();
         if(movement == null)
         {
@@ -33,9 +43,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void NotifyPickedUp(Pickup pickedUpItem)
+    {
+        movementControlsLocked = true;
+    }
+
+    private void NotifySelfDropped(Pickup pickup, DropType dropType)
+    {
+        movementControlsLocked = false;
+    }
+
     private void Update()
     {
-        float horizontal = (Input.GetKey(moveRightKey) ? 1 : 0) + (Input.GetKey(moveLeftKey) ? -1 : 0);
+        float horizontal = movementControlsLocked ? 0 : (Input.GetKey(moveRightKey) ? 1 : 0) + (Input.GetKey(moveLeftKey) ? -1 : 0);
 
         movement.AddMovementInput(new Vector2(horizontal, 0));
 
@@ -56,16 +76,32 @@ public class PlayerController : MonoBehaviour
 
     bool TryPickup()
     {
-        /*
-        Collider2D[] overlaps = Physics2D.OverlapCircleAll(pickupSlotLocation.position, pickupScanRadius, pickupsLayerMask);
+        if(pickedUpItem)
+        {
+            if(pickedUpItem.Drop(this))
+            {
+                pickedUpItem = null;
+            }
+            return true;
+        }
+        Collider2D[] overlaps = Physics2D.OverlapCircleAll(pickupScanLocation.position, pickupScanRadius, pickupsLayerMask);
         foreach(Collider2D coll in overlaps)
         {
             if(coll.gameObject == gameObject)
             {
                 continue;
             }
+            Pickup p = coll.GetComponent<Pickup>();
+            if(p)
+            {
+                if(p.TryPickup(this))
+                {
+                    pickedUpItem = p;
+                    p.PickedUp(this);
+                    return true;
+                }
+            }
         }
-        */
         return false;
     }
 
