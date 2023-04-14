@@ -19,6 +19,7 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody2D body;
 
     private Vector2 movementInput =  Vector2.zero;
+    private Vector2 previousMovementInput = Vector2.zero;
     
     public bool canEverJump = true;
     private bool wantsToJump = false;
@@ -58,10 +59,17 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         Vector2 velocity = body.velocity;
         Vector2 oldVeocity = velocity;
 
         bool isGrounded = IsGrounded();
+
+        if(movementInput.x != 0 && movementInput.x != previousMovementInput.x)
+        {
+            Debug.Log("rotate! prev : " + previousMovementInput.x + "curr : " + movementInput.x);
+            transform.rotation = movementInput.x > 0 ? Quaternion.Euler(0, 0f, 0) : Quaternion.Euler(0, 180f, 0);
+        }
 
         if (movementInput.x != 0)
         {
@@ -84,15 +92,7 @@ public class CharacterMovement : MonoBehaviour
 
         body.velocity = Vector3.SmoothDamp(body.velocity, velocity, ref currentVelocity, movementSmoothing);
 
-        if (oldVeocity.x != velocity.x)
-        {
-            transform.Rotate(new Vector3(0, 180, 0));
-        }
-        if(movementInput.x != 0)
-        {
-            transform.rotation = movementInput.x > 0 ? Quaternion.Euler(0, 0f, 0) : Quaternion.Euler(0, 180f, 0);
-        }
-         
+        previousMovementInput = movementInput;
     }
 
     public bool IsGrounded()

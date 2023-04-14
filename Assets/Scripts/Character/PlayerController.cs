@@ -55,7 +55,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         float horizontal = movementControlsLocked ? 0 : (Input.GetKey(moveRightKey) ? 1 : 0) + (Input.GetKey(moveLeftKey) ? -1 : 0);
-
         movement.AddMovementInput(new Vector2(horizontal, 0));
 
         if (Input.GetKeyDown(upKey))
