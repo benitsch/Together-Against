@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 1176815107}
   - component: {fileID: 1176815106}
   m_Layer: 0
-  m_Name: BackMenu
+  m_Name: CreditsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelSettings: {fileID: 11400000, guid: 910246234dc085c3dae5d9d5fe2c29c9, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: bf69421e8c074192a80e9c2ff1dd3833, type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: c23024024693b71738c1cbcbc113e0f8, type: 3}
   m_SortingOrder: 0
 --- !u!4 &1176815108
 Transform:
@@ -221,7 +221,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
