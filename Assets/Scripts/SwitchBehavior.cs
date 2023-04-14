@@ -4,58 +4,52 @@ using UnityEngine;
 
 public class SwitchBehavior : Interactable
 {
-    // public Sprite spriteStateOff;
-    // public Sprite spriteStateOn;
     private SpriteRenderer spriteRenderer;
+    public Sprite spriteStateOff;
+    public Sprite spriteStateOn;
+    public AudioClip audioTrigger;
     private bool state = false; // off (false) or on (true)
-    private bool isAcitvateable = false;
+    private bool isActivateable = false;
 
     public void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        ChangeSprite();
     }
 
-    // void OnTriggerStay2D(Collider2D other)
-    // {
-    //     if (!isPlayer(other)) {
-    //         return;
-    //     }
-
-    //     if (InputTrigger()) {
-    //         state = !state;
-    //         SetActiveState(state);
-    //         Debug.Log("State changed to " + state);
-    //     }
-    // }
-
-    public void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D collider)
     {
-        if (isPlayer(other)) {
-            isAcitvateable = true;
-        }
+        SetIsActivateable(collider, true);
     }
 
-    public void OnTriggerExit2D(Collider2D other)
+    public void OnTriggerExit2D(Collider2D collider)
     {
-        if (isPlayer(other)) {
-            isAcitvateable = false;
-        }
+        SetIsActivateable(collider, false);
     }
 
     public override void Interact(PlayerController pc)
     {
         state = !state;
         SetActiveState(state);
+        ChangeSprite();
+        AudioSource.PlayClipAtPoint(audioTrigger, transform.position);
         Debug.Log("State changed to " + state);
     }
 
-    // bool InputTrigger()
-    // {
-    //     return Input.GetKeyDown(KeyCode.E);
-    // }
+    private void SetIsActivateable(Collider2D collider, bool activateable)
+    {
+        if (IsPlayer(collider)) {
+            isActivateable = activateable;
+        }
+    }
 
-    private bool isPlayer(Collider2D other)
+    private bool IsPlayer(Collider2D other)
     {
         return other.gameObject.tag == "Player";
+    }
+
+    private void ChangeSprite()
+    {
+        spriteRenderer.sprite = state ? spriteStateOn : spriteStateOff;
     }
 }
