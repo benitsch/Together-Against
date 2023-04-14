@@ -8,12 +8,12 @@ public class ButtonBehavior : Interactable
 
     //public Sprite onSprite; // The Sprite for button pressed
     //public Sprite offSprite;
-    //public AudioClip pressSound; // The sound when the button is pressed
+    [SerializeField] private AudioClip pressSound; // The sound when the button is pressed
 
     private SpriteRenderer spriteRenderer;
     [SerializeField] private bool isPressed = false;
 
-    [SerializeField] private int pressedCounter = 0; 
+    private int pressedCounter = 0; 
 
     void Start()
     {
@@ -30,7 +30,7 @@ public class ButtonBehavior : Interactable
                 SetActiveState(true);
             }
             //spriteRenderer.sprite = isPressed ? onSprite : offSprite;
-            //AudioSource.PlayClipAtPoint(pressSound, transform.position);
+            AudioSource.PlayClipAtPoint(pressSound, transform.position);
         }
     }
 
@@ -44,7 +44,7 @@ public class ButtonBehavior : Interactable
                 SetActiveState(false);
             }
             //spriteRenderer.sprite = isPressed ? onSprite : offSprite;
-            //AudioSource.PlayClipAtPoint(pressSound, transform.position);
+            AudioSource.PlayClipAtPoint(pressSound, transform.position);
         }
     }
 }
