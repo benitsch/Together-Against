@@ -163,6 +163,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7582558928286610762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1187182804909944127}
+  m_Layer: 3
+  m_Name: PIckupLoc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1187182804909944127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7582558928286610762}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5216883396063736194}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8097768310422812657
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +208,7 @@ GameObject:
   - component: {fileID: 8633713224930894646}
   - component: {fileID: 5558227463958204841}
   - component: {fileID: 127168188087882980}
+  - component: {fileID: 3790255582240642407}
   m_Layer: 3
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -199,6 +231,7 @@ Transform:
   - {fileID: 2578012589510454353}
   - {fileID: 3151410590605764962}
   - {fileID: 8742960192550499427}
+  - {fileID: 1187182804909944127}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -289,3 +322,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28241802d2838f14d940aa378eeafc12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3790255582240642407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8097768310422812657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d580eafcff6e6844a0e9bcc74aff905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupSlotLocation: {fileID: 0}

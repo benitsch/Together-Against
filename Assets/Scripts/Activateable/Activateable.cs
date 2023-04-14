@@ -15,9 +15,8 @@ public class Activateable : MonoBehaviour
     OnIsActivatedChangedDelegate OnIsActivatedChanged;
     public ActivationRequirementMode ActivationMode;
 
-    [SerializeField]
     private int Counter = 0;
-    public bool IsActivated = false;
+    public bool IsActivated { private set; get;} = false;
     public bool CanEverBeActivated { private set; get; } = false;
     public void Activate()
     {
