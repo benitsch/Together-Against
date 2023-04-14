@@ -25,10 +25,11 @@ public class ButtonBehavior : Interactable
         if (other.gameObject.tag == "Player")
         {
             pressedCounter++;
-            SetActiveState(pressedCounter > 0);
-
+            if(pressedCounter == 1)
+            {
+                SetActiveState(true);
+            }
             //spriteRenderer.sprite = isPressed ? onSprite : offSprite;
-            Debug.Log("Pressed!");
             //AudioSource.PlayClipAtPoint(pressSound, transform.position);
         }
     }
@@ -38,10 +39,11 @@ public class ButtonBehavior : Interactable
         if (other.gameObject.tag == "Player")
         {
             pressedCounter--;
-            SetActiveState(pressedCounter == 0);
-
+            if(pressedCounter == 0)
+            {
+                SetActiveState(false);
+            }
             //spriteRenderer.sprite = isPressed ? onSprite : offSprite;
-            Debug.Log("Pressed!");
             //AudioSource.PlayClipAtPoint(pressSound, transform.position);
         }
     }
