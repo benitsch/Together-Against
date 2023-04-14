@@ -78,6 +78,8 @@ public class CharacterMovement : MonoBehaviour
     {
         if(IsMovementLocked())
         {
+            wantsToJump = false;
+            movementInput = Vector2.zero;
             return;
         }
         Vector2 velocity = body.velocity;

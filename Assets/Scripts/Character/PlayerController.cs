@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public KeyCode upKey = KeyCode.W;
     public KeyCode downKey = KeyCode.S;
     public KeyCode useKey = KeyCode.E;
+    public KeyCode throwKey = KeyCode.F;
+
 
     [ReadOnly] public bool movementControlsLocked = false;
 
@@ -65,22 +67,48 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(useKey))
         {
             OnUseKeyPressed?.Invoke();
-            if(!TryPickup())
+            if(!DropHeldItem())
             {
-                TryInteract();
+                if (!TryPickup())
+                {
+                    TryInteract();
+                }
             }
         }
+
+        if(Input.GetKeyDown(throwKey))
+        {
+            ThrowHeldObject();
+        }
+    }
+
+    void ThrowHeldObject()
+    {
+        if(!pickedUpItem)
+        {
+            return;
+        }
+    }
+    bool DropHeldItem()
+    {
+        if(!pickedUpItem)
+        {
+            return false;
+        }
+
+        Vector2 dropLocation = new Vector2(pickupScanLocation.position.x + transform.right.x * pickedUpItem.coll.bounds.extents.x, pickupScanLocation.position.y + pickedUpItem.coll.bounds.extents.y);
+
+        pickedUpItem.Drop(this, dropLocation);
+        pickedUpItem = null;
+
+        return true;
     }
 
     bool TryPickup()
     {
         if(pickedUpItem)
         {
-            if(pickedUpItem.Drop(this))
-            {
-                pickedUpItem = null;
-            }
-            return true;
+            return false;
         }
         Collider2D[] overlaps = Physics2D.OverlapCircleAll(pickupScanLocation.position, pickupScanRadius, pickupsLayerMask);
         foreach(Collider2D coll in overlaps)
@@ -123,6 +151,6 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(pickupScanLocation.position, pickupScanRadius);
+        Gizmos.DrawSphere(pickupScanLocation.position, 100);
     }
 }
