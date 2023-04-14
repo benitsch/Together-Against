@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonBehavior : MonoBehaviour
+public class ButtonBehavior : Interactable
 {
     //TODO sprites for pressed and released & sound when art is ready
 
@@ -10,10 +10,10 @@ public class ButtonBehavior : MonoBehaviour
     //public Sprite offSprite;
     //public AudioClip pressSound; // The sound when the button is pressed
 
-    [SerializeField] private Activateable activateable;
-
     private SpriteRenderer spriteRenderer;
     [SerializeField] private bool isPressed = false;
+
+    [SerializeField] private int pressedCounter = 0; 
 
     void Start()
     {
@@ -24,17 +24,22 @@ public class ButtonBehavior : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            isPressed = !isPressed;
-            if (activateable != null)
-            {
-                if (isPressed)
-                {
-                    activateable.Activate();
-                } else
-                {
-                    activateable.Deactivate();
-                }
-            }
+            pressedCounter++;
+            SetActiveState(pressedCounter > 0);
+
+            //spriteRenderer.sprite = isPressed ? onSprite : offSprite;
+            Debug.Log("Pressed!");
+            //AudioSource.PlayClipAtPoint(pressSound, transform.position);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            pressedCounter--;
+            SetActiveState(pressedCounter == 0);
+
             //spriteRenderer.sprite = isPressed ? onSprite : offSprite;
             Debug.Log("Pressed!");
             //AudioSource.PlayClipAtPoint(pressSound, transform.position);
