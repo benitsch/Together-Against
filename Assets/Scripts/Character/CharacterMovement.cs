@@ -24,6 +24,8 @@ public class CharacterMovement : MonoBehaviour
     public bool canEverJump = true;
     private bool wantsToJump = false;
 
+    protected int lockMovementCounter = 0;
+
     private void Awake()
     {
         body = GetComponentInChildren<Rigidbody2D>();
@@ -36,6 +38,21 @@ public class CharacterMovement : MonoBehaviour
         {
             this.gameObject.SetActive(false);
         }
+    }
+
+    public void LockMovement()
+    {
+        lockMovementCounter++;
+    }
+
+    public void UnlockMovement()
+    {
+        lockMovementCounter--;
+    }
+
+    public bool IsMovementLocked()
+    {
+        return lockMovementCounter > 0;
     }
 
     // Update is called once per frame
@@ -59,7 +76,10 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        if(IsMovementLocked())
+        {
+            return;
+        }
         Vector2 velocity = body.velocity;
         Vector2 oldVeocity = velocity;
 
@@ -99,9 +119,7 @@ public class CharacterMovement : MonoBehaviour
     {
         int oldLayer = gameObject.layer; // This variable now stored our original layer
         gameObject.layer = 2; // The game object will now ignore all forms of raycasting
-
         Collider2D colliders = Physics2D.OverlapCircle(groundCheckPosition.position, groundCheckRadius, groundLayer);
-
         gameObject.layer = oldLayer;
 
         return colliders != null;
