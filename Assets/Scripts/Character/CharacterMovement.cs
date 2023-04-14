@@ -61,9 +61,15 @@ public class CharacterMovement : MonoBehaviour
         Vector2 velocity = body.velocity;
         Vector2 oldVeocity = velocity;
 
+        bool isGrounded = IsGrounded();
+
         if (movementInput.x != 0)
         {
             velocity = new Vector2(movementInput.x * movementSpeed * Time.fixedDeltaTime, body.velocity.y);
+        }
+        else if (!isGrounded)
+        {
+            velocity.x = 0;
         }
 
         if (wantsToJump)
