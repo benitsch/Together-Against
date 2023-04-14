@@ -20,12 +20,14 @@ public class Activateable : MonoBehaviour
     public bool CanEverBeActivated { private set; get; } = false;
     public void Activate()
     {
+        IsActivated = true;
         Activate_Implementation();
         OnIsActivatedChanged?.Invoke(this, IsActivated);
     }
 
     public void Deactivate()
     {
+        IsActivated = false;
         Deactivate_Implementation();
         OnIsActivatedChanged?.Invoke(this, IsActivated);
     }
