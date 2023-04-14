@@ -18,6 +18,10 @@ public class Interactable : MonoBehaviour
         }
     }
 
+    public virtual void Interact(PlayerController pc)
+    {
+    }
+
     public void SetActiveState(bool isActive)
     {
         OnActivationStateChanged?.Invoke(this, isActive);

@@ -58,8 +58,9 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 velocity = body.velocity;
 
+        Vector2 velocity = body.velocity;
+        Vector2 oldVeocity = velocity;
         if (movementInput.x != 0)
         {
             velocity = new Vector2(movementInput.x * movementSpeed * Time.fixedDeltaTime, body.velocity.y);
@@ -76,6 +77,11 @@ public class CharacterMovement : MonoBehaviour
         }
 
         body.velocity = Vector3.SmoothDamp(body.velocity, velocity, ref currentVelocity, movementSmoothing);
+
+        if(oldVeocity.x != velocity.x)
+        {
+            transform.Rotate(new Vector3(0, 180, 0));
+        }
     }
 
     public bool IsGrounded()
