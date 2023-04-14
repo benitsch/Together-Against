@@ -6,6 +6,7 @@ using UnityEngine;
 public enum ActivationRequirementMode
 {
     OnlyOne,
+    MinumumRequired,
     All
 }
 public delegate void OnIsActivatedChangedDelegate(Activateable a, bool isActive);
@@ -14,18 +15,22 @@ public class Activateable : MonoBehaviour
     private List<Interactable> LinkedInteractables = new List<Interactable>();
     OnIsActivatedChangedDelegate OnIsActivatedChanged;
     public ActivationRequirementMode ActivationMode;
+    [Range(1,10)]
+    public int MinimumRequired = 1;
 
     private int Counter = 0;
     public bool IsActivated { private set; get;} = false;
     public bool CanEverBeActivated { private set; get; } = false;
     public void Activate()
     {
+        IsActivated = true;
         Activate_Implementation();
         OnIsActivatedChanged?.Invoke(this, IsActivated);
     }
 
     public void Deactivate()
     {
+        IsActivated = false;
         Deactivate_Implementation();
         OnIsActivatedChanged?.Invoke(this, IsActivated);
     }
@@ -63,6 +68,10 @@ public class Activateable : MonoBehaviour
                 {
                     this.Activate();
                 }
+                else if(ActivationMode == ActivationRequirementMode.MinumumRequired && this.Counter == MinimumRequired)
+                {
+                    this.Activate();
+                }
             }
             else if (!isActive)
             {
@@ -73,6 +82,10 @@ public class Activateable : MonoBehaviour
                     this.Deactivate();
                 }
                 else if (ActivationMode == ActivationRequirementMode.All && this.Counter < LinkedInteractables.Count)
+                {
+                    this.Deactivate();
+                }
+                else if (ActivationMode == ActivationRequirementMode.MinumumRequired && this.Counter == MinimumRequired - 1)
                 {
                     this.Deactivate();
                 }
