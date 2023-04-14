@@ -339,7 +339,6 @@ MonoBehaviour:
   useKey: 101
   movementControlsLocked: 0
   pickedUpItem: {fileID: 0}
-  MyPickup: {fileID: 0}
   pickupSlotLocation: {fileID: 1187182804909944127}
   pickupScanLocation: {fileID: 6931700287817149297}
   pickupScanRadius: 0
@@ -365,7 +364,7 @@ MonoBehaviour:
   jumpForce: 7
   movementSmoothing: 0
   groundCheckPosition: {fileID: 3151410590605764962}
-  groundCheckRadius: 0.1
+  groundCheckRadius: 0.301
   groundLayer:
     serializedVersion: 2
     m_Bits: 200
@@ -433,3 +432,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickedUpBy: {fileID: 0}
   bottomLocation: {fileID: 3151410590605764962}
+  maxForce: 10000
+  forceBreak: 1000

@@ -22,6 +22,8 @@ public class Pickup : MonoBehaviour
     TargetJoint2D joint = null;
     Collider2D collider = null;
 
+    public float maxForce = 1000;
+    public float forceBreak = 1000;
     private void Awake()
     {
         collider = GetComponent<Collider2D>();
@@ -53,8 +55,10 @@ public class Pickup : MonoBehaviour
         joint.connectedBody = pc.GetComponent<Rigidbody2D>();
         joint.target = pc.pickupSlotLocation.position;
         joint.enableCollision = false;
-        collider.enabled = false;
-        Invoke("ReenableCollision", 0.5f);
+        //collider.enabled = false;
+        joint.breakForce = gameObject.CompareTag("Player") ? 1000 : 1000;
+        joint.maxForce = maxForce;
+        Invoke("ReenableCollision", 1f);
     }
 
     private void OnJointBreak2D(Joint2D joint)
@@ -82,15 +86,24 @@ public class Pickup : MonoBehaviour
         pickedUpBy = null;
         if (dropType == DropType.Dropped)
         {
+            
+            Bounds myBounds = Utility.GetBounds2D(transform);
+            Debug.Log(myBounds);
+            Bounds otherBounds = Utility.GetBounds2D(pc.transform);
+            //float toMove = myBounds.size
             CancelInvoke("ReenableCollision");
-            collider.enabled = false;
-            joint.target = pc.pickupScanLocation.position - bottomLocation.localPosition;
+            //collider.enabled = false;
+
+            //body.AddForce(new Vector2(pc.transform.forward.x * 300, 300), ForceMode2D.Force);
+            //FinalizeDropped();
+            joint.target = new Vector2(pc.pickupScanLocation.position.x + pc.transform.right.x * myBounds.extents.x, pc.pickupScanLocation.position.y + myBounds.extents.y);
             Invoke("FinalizeDropped", 0.5f);
         }
         else if(dropType == DropType.BrokeFree)
         {
             FinalizeDropped();
         }
+        OnDropped?.Invoke(this, dropType);
         return true;
     }
 

@@ -23,6 +23,10 @@ public class Activateable : MonoBehaviour
     public bool CanEverBeActivated { private set; get; } = false;
     public void Activate()
     {
+        if(IsActivated)
+        {
+            return;
+        }
         IsActivated = true;
         Activate_Implementation();
         OnIsActivatedChanged?.Invoke(this, IsActivated);
@@ -30,6 +34,10 @@ public class Activateable : MonoBehaviour
 
     public void Deactivate()
     {
+        if(!IsActivated)
+        {
+            return;
+        }
         IsActivated = false;
         Deactivate_Implementation();
         OnIsActivatedChanged?.Invoke(this, IsActivated);
@@ -68,7 +76,7 @@ public class Activateable : MonoBehaviour
                 {
                     this.Activate();
                 }
-                else if(ActivationMode == ActivationRequirementMode.MinumumRequired && this.Counter == MinimumRequired)
+                else if(ActivationMode == ActivationRequirementMode.MinumumRequired && this.Counter >= MinimumRequired)
                 {
                     this.Activate();
                 }
@@ -85,7 +93,7 @@ public class Activateable : MonoBehaviour
                 {
                     this.Deactivate();
                 }
-                else if (ActivationMode == ActivationRequirementMode.MinumumRequired && this.Counter == MinimumRequired - 1)
+                else if (ActivationMode == ActivationRequirementMode.MinumumRequired && this.Counter < MinimumRequired)
                 {
                     this.Deactivate();
                 }

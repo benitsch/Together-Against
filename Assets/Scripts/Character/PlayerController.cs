@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     public OnUseKeyPressedDelegate OnUseKeyPressed;
 
     [ReadOnly, SerializeField] private Pickup pickedUpItem = null;
-    public Pickup MyPickup;
     public Transform pickupSlotLocation;
     public Transform pickupScanLocation;
     [Range(0.1f, 1.0f)] public float pickupScanRadius;
@@ -31,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         Pickup myPickup = GetComponent<Pickup>();
-        if(MyPickup)
+        if(myPickup)
         {
             myPickup.OnPickedUp += NotifyPickedUp;
             myPickup.OnDropped += NotifySelfDropped;
@@ -120,5 +119,11 @@ public class PlayerController : MonoBehaviour
                 i.Interact(this);
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(pickupScanLocation.position, pickupScanRadius);
     }
 }
