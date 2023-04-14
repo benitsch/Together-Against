@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8764898375544166536}
   - component: {fileID: 5369085361817648143}
   - component: {fileID: 816015614830763182}
+  - component: {fileID: 668585611}
   m_Layer: 10
   m_Name: PickupTestBox
   m_TagString: Untagged
@@ -50,6 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickedUpBy: {fileID: 0}
   bottomLocation: {fileID: 6921505672211211427}
+  maxForce: 1000
+  forceBreak: 1000
 --- !u!212 &8764898375544166536
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -149,6 +152,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &668585611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3130039927948541035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28241802d2838f14d940aa378eeafc12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 1479200189748812058, guid: e3ff28473cadf2b4fa4677a1791b387b, type: 3}
 --- !u!1 &5870949201635688028
 GameObject:
   m_ObjectHideFlags: 0

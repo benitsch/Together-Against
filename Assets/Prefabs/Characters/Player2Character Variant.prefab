@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 127168188087882980, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
+      propertyPath: particle
+      value: 
+      objectReference: {fileID: 1479200189748812058, guid: e3ff28473cadf2b4fa4677a1791b387b, type: 3}
     - target: {fileID: 1074223979275029577, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
       propertyPath: upKey
       value: 273
