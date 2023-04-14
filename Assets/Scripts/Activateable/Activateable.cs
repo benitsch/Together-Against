@@ -20,13 +20,13 @@ public class Activateable : MonoBehaviour
     private int Counter = 0;
     public bool IsActivated = false;
 
-    void Activate()
+    public void Activate()
     {
         Activate_Implementation();
         OnIsActivatedChanged?.Invoke(this, IsActivated);
     }
 
-    void Deactivate()
+    public void Deactivate()
     {
         Deactivate_Implementation();
         OnIsActivatedChanged?.Invoke(this, IsActivated);
