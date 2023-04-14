@@ -18,6 +18,8 @@ public class MovingPlatform : Activateable
         if (defaultIsMoving) {
             Activate();
         }
+
+        transform.position = (posA.position + posB.position) /2f;
     }
 
     // Update is called once per frame

@@ -20,13 +20,13 @@ public class Pickup : MonoBehaviour
 
     public Transform bottomLocation = null;
     TargetJoint2D joint = null;
-    Collider2D collider = null;
+    public Collider2D coll { get; private set; } = null;
 
     public float maxForce = 1000;
     public float forceBreak = 1000;
     private void Awake()
     {
-        collider = GetComponent<Collider2D>();
+        coll = GetComponent<Collider2D>();
         body = GetComponent<Rigidbody2D>();
     }
     public bool TryPickup(PlayerController carrier)
@@ -52,10 +52,10 @@ public class Pickup : MonoBehaviour
         OnPickedUp?.Invoke(this);
 
         joint = gameObject.AddComponent<TargetJoint2D>();
-        joint.connectedBody = pc.GetComponent<Rigidbody2D>();
+        //joint.connectedBody = pc.GetComponent<Rigidbody2D>();
         joint.target = pc.pickupSlotLocation.position;
-        joint.enableCollision = false;
-        collider.enabled = false;
+        //joint.enableCollision = false;
+        coll.enabled = false;
         joint.breakForce = gameObject.CompareTag("Player") ? 1000 : 1000;
         joint.maxForce = maxForce;
         Invoke("ReenableCollision", 1f);
@@ -69,15 +69,16 @@ public class Pickup : MonoBehaviour
 
     public void ReenableCollision()
     {
-        collider.enabled = true;
+        coll.enabled = true;
     }
 
-    public bool Drop(PlayerController pc)
+    public bool Drop(PlayerController pc, Vector2 dropLocation)
     {
         if(pickedUpBy != pc)
         {
             return false;
         }
+        joint.target = dropLocation;
         return DropInternal(pc, DropType.Dropped);
     }
 
@@ -95,7 +96,6 @@ public class Pickup : MonoBehaviour
 
             //body.AddForce(new Vector2(pc.transform.forward.x * 300, 300), ForceMode2D.Force);
             //FinalizeDropped();
-            joint.target = new Vector2(pc.pickupScanLocation.position.x + pc.transform.right.x * collider.bounds.extents.x, pc.pickupScanLocation.position.y + collider.bounds.extents.y);
             Invoke("FinalizeDropped", 0.5f);
         }
         else if(dropType == DropType.BrokeFree)
@@ -110,7 +110,7 @@ public class Pickup : MonoBehaviour
     {
         CancelInvoke("FinalizeDropped");
         pickedUpBy = null;
-        collider.enabled = true;
+        coll.enabled = true;
         GameObject.Destroy(joint);
         joint = null;
     }
