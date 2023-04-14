@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent (typeof(Activateable))]
 public class FallingPlatform : MonoBehaviour
 {
     [SerializeField] private bool FallOnExit = false;
@@ -15,19 +16,21 @@ public class FallingPlatform : MonoBehaviour
 
     private bool triggerd = false;
     private Vector3 position;
+    Activateable link;
 
     private void Start()
     {
         position = transform.position;
         GetComponent<Rigidbody2D>().mass = mass;
         GetComponent<Rigidbody2D>().drag = drag;
+        link = GetComponent<Activateable>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (FallOnExit || triggerd) return;
+        if (link.CanEverBeActivated && !link.IsActivated) return;
         if (collision.collider.gameObject.layer != TriggerLayer) return;
-        Debug.Log(collision.transform.tag);
 
         triggerd = true;
         Invoke("StartFalling", EnterTime);
@@ -36,6 +39,7 @@ public class FallingPlatform : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (!FallOnExit || triggerd) return;
+        if (link.CanEverBeActivated && !link.IsActivated) return;
         if (collision.collider.gameObject.layer != TriggerLayer) return;
 
         triggerd = true;

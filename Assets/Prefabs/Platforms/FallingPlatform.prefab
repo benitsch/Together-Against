@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4708818172190048528}
   - component: {fileID: 4708818172190048543}
   - component: {fileID: 4708818172190048542}
-  m_Layer: 0
+  - component: {fileID: 2331303736196117286}
+  m_Layer: 7
   m_Name: FallingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,8 +74,22 @@ MonoBehaviour:
   FallTime: 5
   RespawnTime: 10
   TriggerLayer: 3
-  mass: 10
-  drag: 5
+  mass: 100
+  drag: 20
+--- !u!114 &2331303736196117286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4708818172190048541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7506549fa1c174e9f18f9ad0a948ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActivationMode: 0
+  MinimumRequired: 1
 --- !u!1 &4708818172704959433
 GameObject:
   m_ObjectHideFlags: 0
