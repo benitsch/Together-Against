@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Activateable))]
 public class WeightedPlatform : MonoBehaviour
 {
     [SerializeField] private float MoveDistance;
@@ -14,26 +15,40 @@ public class WeightedPlatform : MonoBehaviour
     [SerializeField] private WeightedPlatformCollider PlatformRight;
 
     private float Timer = 0;
+    Activateable link;
+
+    private void Start()
+    {
+        link = GetComponent<Activateable>();
+    }
 
     private void FixedUpdate()
     {
-        if (PlatformLeft.InContact || PlatformRight.InContact) Timer = FloatTimer;
-        
-        if (Timer > 0)
+        if (link.CanEverBeActivated && !link.IsActivated)
         {
-            Timer -= Time.deltaTime;
-
-            float speed = PlatformLeft.Mass - PlatformRight.Mass;
-            if (speed > 0) speed = AdjustSpeed;
-            else if (speed < 0) speed = -AdjustSpeed;
-            Vector3 velocity = Vector2.down * speed;
-            PlatformLeft.SetVelocity(velocity, MoveDistance);
-            PlatformRight.SetVelocity(velocity * -1, MoveDistance);
+            PlatformLeft.SetVelocity(Vector2.zero, MoveDistance);
+            PlatformRight.SetVelocity(Vector2.zero, MoveDistance);
         }
-        else if (BalanceSpeed > 0 && !PlatformLeft.InContact && !PlatformRight.InContact)
+        else
         {
-            PlatformLeft.ReturnToOrigin(BalanceSpeed);
-            PlatformRight.GetComponent<Rigidbody2D>().velocity = PlatformLeft.GetComponent<Rigidbody2D>().velocity * -1;
+            if (PlatformLeft.InContact || PlatformRight.InContact) Timer = FloatTimer;
+
+            if (Timer > 0)
+            {
+                Timer -= Time.deltaTime;
+
+                float speed = PlatformLeft.Mass - PlatformRight.Mass;
+                if (speed > 0) speed = AdjustSpeed;
+                else if (speed < 0) speed = -AdjustSpeed;
+                Vector3 velocity = Vector2.down * speed;
+                PlatformLeft.SetVelocity(velocity, MoveDistance);
+                PlatformRight.SetVelocity(velocity * -1, MoveDistance);
+            }
+            else if (BalanceSpeed > 0 && !PlatformLeft.InContact && !PlatformRight.InContact)
+            {
+                PlatformLeft.ReturnToOrigin(BalanceSpeed);
+                PlatformRight.ReturnToOrigin(BalanceSpeed);
+            }
         }
     }
 
