@@ -10,11 +10,13 @@ public class LevelTimerController : MonoBehaviour
    private string gameOverSceneName;
 
    [SerializeField] 
-   private float timeLeft = 300; 
-   
+   private float timeLeft = 300;
+
    [SerializeField]
-   private bool timerOn = false;
+   private float lastSeconds = 10; 
    
+   private bool timerOn = false;
+   private bool lastSecondsReached = false;
 
    private UIDocument _doc;
    private Label _timerLabel;
@@ -36,6 +38,12 @@ public class LevelTimerController : MonoBehaviour
          if(timeLeft > 0){
             timeLeft -= Time.deltaTime;
             updateTimer(timeLeft);
+
+            if(timeLeft <= lastSeconds && !lastSecondsReached){
+               lastSecondsReached = true;
+               _timerLabel.style.color = new StyleColor(new Color(1.0f, 0.0f, 0.0f));
+            }
+
          } else{
             timeLeft = 0;
             timerOn = false;

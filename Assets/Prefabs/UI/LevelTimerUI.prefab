@@ -63,4 +63,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverSceneName: GameOver
   timeLeft: 300
+  lastSeconds: 10
   timerOn: 0
