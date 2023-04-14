@@ -55,7 +55,7 @@ public class Pickup : MonoBehaviour
         joint.connectedBody = pc.GetComponent<Rigidbody2D>();
         joint.target = pc.pickupSlotLocation.position;
         joint.enableCollision = false;
-        //collider.enabled = false;
+        collider.enabled = false;
         joint.breakForce = gameObject.CompareTag("Player") ? 1000 : 1000;
         joint.maxForce = maxForce;
         Invoke("ReenableCollision", 1f);
@@ -88,7 +88,6 @@ public class Pickup : MonoBehaviour
         {
             
             Bounds myBounds = Utility.GetBounds2D(transform);
-            Debug.Log(myBounds);
             Bounds otherBounds = Utility.GetBounds2D(pc.transform);
             //float toMove = myBounds.size
             CancelInvoke("ReenableCollision");
@@ -96,7 +95,7 @@ public class Pickup : MonoBehaviour
 
             //body.AddForce(new Vector2(pc.transform.forward.x * 300, 300), ForceMode2D.Force);
             //FinalizeDropped();
-            joint.target = new Vector2(pc.pickupScanLocation.position.x + pc.transform.right.x * myBounds.extents.x, pc.pickupScanLocation.position.y + myBounds.extents.y);
+            joint.target = new Vector2(pc.pickupScanLocation.position.x + pc.transform.right.x * collider.bounds.extents.x, pc.pickupScanLocation.position.y + collider.bounds.extents.y);
             Invoke("FinalizeDropped", 0.5f);
         }
         else if(dropType == DropType.BrokeFree)
