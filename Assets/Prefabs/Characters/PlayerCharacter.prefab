@@ -173,6 +173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2578012589510454353}
   - component: {fileID: 7143455391048953452}
+  - component: {fileID: 3056643024102807256}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -247,6 +248,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3056643024102807256
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7313073882990047959}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 20802978590b76e4e836b88bdc7809f6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7582558928286610762
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +359,7 @@ MonoBehaviour:
   upKey: 119
   downKey: 115
   useKey: 101
+  throwKey: 102
   movementControlsLocked: 0
   pickedUpItem: {fileID: 0}
   pickupSlotLocation: {fileID: 1187182804909944127}
@@ -369,6 +392,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1224
   canEverJump: 1
+  animator: {fileID: 0}
 --- !u!50 &8633713224930894646
 Rigidbody2D:
   serializedVersion: 4

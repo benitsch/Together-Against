@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,10 +25,13 @@ public class CharacterMovement : MonoBehaviour
     public bool canEverJump = true;
     private bool wantsToJump = false;
 
+    public Animator animator;
+
     protected int lockMovementCounter = 0;
 
     private void Awake()
     {
+        animator = GetComponentInChildren<Animator>();
         body = GetComponentInChildren<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
@@ -59,6 +63,10 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
         spriteRenderer.flipX = movementInput.x < 0;
+        Debug.Assert(animator != null);
+        Debug.Assert(body != null);
+        Debug.Log(body.velocity.x);
+        animator.SetFloat("speed", Math.Abs(body.velocity.x));
     }
 
     public void Jump()

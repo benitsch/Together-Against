@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1577186874734339491, guid: 0edc1ed78fe0d774c90382ec9000e1a6, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1577186874734339491, guid: 0edc1ed78fe0d774c90382ec9000e1a6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -180,9 +180,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0edc1ed78fe0d774c90382ec9000e1a6, type: 3}
---- !u!114 &1041555345 stripped
+--- !u!114 &865140360 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9082812272098933310, guid: a62c5f02753101043b01d5f59b4d4935, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3354527981722780883, guid: a62c5f02753101043b01d5f59b4d4935, type: 3}
   m_PrefabInstance: {fileID: 1186730457}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -249,7 +249,7 @@ PrefabInstance:
     - target: {fileID: 8367922334330044643, guid: c04a4a1fa1f37394482b7a0966852d4c, type: 3}
       propertyPath: Activateables.Array.data[0]
       value: 
-      objectReference: {fileID: 1041555345}
+      objectReference: {fileID: 865140360}
     - target: {fileID: 8367922334330044647, guid: c04a4a1fa1f37394482b7a0966852d4c, type: 3}
       propertyPath: m_Name
       value: Button (1)
@@ -522,7 +522,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1492556790
 PrefabInstance:
