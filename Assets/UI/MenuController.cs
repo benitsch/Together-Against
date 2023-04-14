@@ -11,6 +11,9 @@ public class MenuController : MonoBehaviour
    
    [SerializeField] 
    string instructionsSceneName;
+
+   [SerializeField]
+   string levelSelectSceneName;
    
    [SerializeField] 
    string creditsSceneName;
@@ -19,6 +22,7 @@ public class MenuController : MonoBehaviour
    private UIDocument _doc;
    private Button _playButton;
    private Button _instructionsButton;
+   private Button _levelSelectButton;
    private Button _creditsButton;
 
    private void Awake()
@@ -30,6 +34,9 @@ public class MenuController : MonoBehaviour
 
     _instructionsButton = _doc.rootVisualElement.Q<Button>("InstructionsButton");
     _instructionsButton.clicked += InstructionsButtonClicked;
+
+    _levelSelectButton = _doc.rootVisualElement.Q<Button>("LevelSelectButton");
+    _levelSelectButton.clicked += LevelSelectButtonClicked;
 
     _creditsButton = _doc.rootVisualElement.Q<Button>("CreditsButton");
     _creditsButton.clicked += CreditsButtonClicked;
@@ -43,6 +50,11 @@ public class MenuController : MonoBehaviour
    private void InstructionsButtonClicked()
    {
       SceneManager.LoadScene(instructionsSceneName);
+   }
+
+   private void LevelSelectButtonClicked()
+   {
+      SceneManager.LoadScene(levelSelectSceneName);
    }
 
    private void CreditsButtonClicked()

@@ -1,0 +1,25 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/MenuStyles.uss?fileID=7433441132597879392&amp;guid=e712333124a1676458afa46a8f902636&amp;type=3#MenuStyles" />
+    <ui:VisualElement name="CenterSection" style="background-color: rgba(0, 0, 0, 0.2); width: 90%; height: 90%; margin-left: auto; align-items: center; margin-right: auto; margin-top: 0; flex-direction: column; justify-content: flex-end; position: absolute; bottom: auto; left: 5%; right: 0;">
+        <ui:Label text="Level Select" display-tooltip-when-elided="true" name="PageLabel" style="-unity-font: url(&apos;project://database/Assets/Fonts/FrederickatheGreat-Regular.ttf?fileID=12800000&amp;guid=76ab272695bdee3b4a7e8b47802786ce&amp;type=3#FrederickatheGreat-Regular&apos;); -unity-font-definition: url(&apos;project://database/Assets/Fonts/FrederickatheGreat-Regular%20SDF.asset?fileID=11400000&amp;guid=39e1dcda4aa69dcdea4e12291ba5b1cc&amp;type=2#FrederickatheGreat-Regular SDF&apos;); font-size: 60px; position: absolute; top: 0;" />
+        <ui:VisualElement name="ButtonContainer" style="position: absolute; top: 10%; width: 90%; height: 85%; margin-top: 1%;">
+            <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible">
+                <ui:Button text="Level 1" display-tooltip-when-elided="true" name="BtnLvl1" class="menu-button" style="justify-content: flex-end;" />
+                <ui:Button text="Level 2" display-tooltip-when-elided="true" name="BtnLvl2" class="menu-button" style="justify-content: flex-end;" />
+                <ui:Button text="Level 3" display-tooltip-when-elided="true" name="BtnLvl3" class="menu-button" style="justify-content: flex-end;" />
+                <ui:Button text="Level 4" display-tooltip-when-elided="true" name="BtnLvl4" class="menu-button" style="justify-content: flex-end;" />
+                <ui:Button text="Level 5" display-tooltip-when-elided="true" name="BtnLvl5" class="menu-button" style="justify-content: flex-end;" />
+                <ui:Button text="Level 6" display-tooltip-when-elided="true" name="BtnLvl6" class="menu-button" style="justify-content: flex-end;" />
+                <ui:Button text="Level 7" display-tooltip-when-elided="true" name="BtnLvl7" class="menu-button" style="justify-content: flex-end;" />
+                <ui:Button text="Level 8" display-tooltip-when-elided="true" name="BtnLvl8" class="menu-button" style="justify-content: flex-end;" />
+                <ui:Button text="Level 9" display-tooltip-when-elided="true" name="BtnLvl9" class="menu-button" style="justify-content: flex-end;" />
+                <ui:Button text="Level 10" display-tooltip-when-elided="true" name="BtnLvl10" class="menu-button" style="justify-content: flex-end;" />
+            </ui:ScrollView>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="BackSection" style="background-color: rgba(0, 0, 0, 0.2); width: 50%; height: 10%; margin-left: auto; align-items: center; margin-right: auto; margin-top: 0; flex-direction: column; justify-content: flex-end; position: absolute; bottom: 0; left: 25%; right: 0;">
+        <ui:VisualElement name="Buttons" style="justify-content: center; flex-grow: 1; padding-bottom: 0; padding-top: 0; align-items: center;">
+            <ui:Button text="Back" display-tooltip-when-elided="true" name="BackButton" class="menu-button" style="justify-content: flex-end;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

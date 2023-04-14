@@ -7,6 +7,7 @@
         <ui:VisualElement name="Buttons" style="justify-content: center; flex-grow: 1; padding-bottom: 20%;">
             <ui:Button text="Play" display-tooltip-when-elided="true" name="PlayButton" class="menu-button" />
             <ui:Button text="Instructions" display-tooltip-when-elided="true" name="InstructionsButton" class="menu-button" />
+            <ui:Button text="Level Select" display-tooltip-when-elided="true" name="LevelSelectButton" class="menu-button" />
             <ui:Button text="Credits" display-tooltip-when-elided="true" name="CreditsButton" class="menu-button" />
         </ui:VisualElement>
     </ui:VisualElement>

@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1592565082343082259}
   - component: {fileID: 1592565082343082258}
+  - component: {fileID: 8143477008312553141}
+  - component: {fileID: 148869683092636176}
   - component: {fileID: 1592565082343082261}
   - component: {fileID: 1838379136}
   - component: {fileID: 1904596392}
@@ -29,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1592565082343082263}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0391, y: -3.332, z: 0}
-  m_LocalScale: {x: 0.93, y: 0.5, z: 0.9}
+  m_LocalScale: {x: 1, y: 1, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -87,6 +89,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &8143477008312553141
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592565082343082263}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 19.2, y: 1.32}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 19.2, y: 1.32}
+  m_EdgeRadius: 0
+--- !u!114 &148869683092636176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592565082343082263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6595f706a21a9024b839fe2b5c98f58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &1592565082343082261
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -124,7 +164,7 @@ SurfaceEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1032
   m_Speed: -15
   m_SpeedVariation: 0
   m_ForceScale: 0.1

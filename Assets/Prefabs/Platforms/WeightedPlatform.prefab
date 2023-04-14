@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 641816131535232718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 641816132069894148}
@@ -138,7 +138,7 @@ Transform:
   m_GameObject: {fileID: 641816131593687279}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 641816132653431307}
@@ -209,7 +209,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.030274928, y: -0.040365577}
+  m_Offset: {x: -0.030274868, y: -0.020502865}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -220,7 +220,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.190784, y: 0.67707527}
+  m_Size: {x: 2.190784, y: 0.63734984}
   m_EdgeRadius: 0
 --- !u!1 &641816132069894149
 GameObject:
@@ -373,6 +373,7 @@ GameObject:
   - component: {fileID: 641816132998657567}
   - component: {fileID: 641816132998657564}
   - component: {fileID: 2078218331}
+  - component: {fileID: 426884700715045607}
   m_Layer: 7
   m_Name: WeightedPlatform
   m_TagString: Untagged
@@ -389,7 +390,7 @@ Transform:
   m_GameObject: {fileID: 641816132998657565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 1, y: 1, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 641816132069894148}
@@ -468,3 +469,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &426884700715045607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641816132998657565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7506549fa1c174e9f18f9ad0a948ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinkedInteractables: []
+  ActivationMode: 0
+  MinimumRequired: 1
+  Counter: 0
+  IsActivated: 0
+  CanEverBeActivated: 0
