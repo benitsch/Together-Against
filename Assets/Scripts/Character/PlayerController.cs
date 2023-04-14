@@ -32,5 +32,10 @@ public class PlayerController : MonoBehaviour
         {
             movement.Jump();
         }
+
+        if(Input.GetKeyDown(useKey))
+        {
+
+        }
     }
 }
