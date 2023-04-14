@@ -14,7 +14,9 @@ public class ButtonBehavior : Interactable
     private SpriteRenderer spriteRenderer;
     private bool isPressed = false;
 
-    private int pressedCounter = 0; 
+    private int pressedCounter = 0;
+
+    public LayerMask triggeringObjects;
 
     protected override void Awake()
     {
@@ -24,7 +26,7 @@ public class ButtonBehavior : Interactable
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player" && !isPressed)
+        if (Utility.LayerMaskHas(triggeringObjects, other.gameObject.layer))
         {
             pressedCounter++;
             if (pressedCounter == 1)
@@ -39,7 +41,7 @@ public class ButtonBehavior : Interactable
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player" && isPressed && !staysPressed)
+        if (Utility.LayerMaskHas(triggeringObjects, other.gameObject.layer) && isPressed && !staysPressed)
         {
             pressedCounter--;
             if (pressedCounter == 0)

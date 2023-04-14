@@ -93,7 +93,6 @@ public class CharacterMovement : MonoBehaviour
 
         if(movementInput.x != 0 && movementInput.x != previousMovementInput.x)
         {
-            Debug.Log("rotate! prev : " + previousMovementInput.x + "curr : " + movementInput.x);
             transform.rotation = movementInput.x > 0 ? Quaternion.Euler(0, 0f, 0) : Quaternion.Euler(0, 180f, 0);
         }
 
