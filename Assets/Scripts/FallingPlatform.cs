@@ -18,7 +18,7 @@ public class FallingPlatform : MonoBehaviour
     private Vector3 position;
     Activateable link;
 
-    private void Start()
+    private void Awake()
     {
         position = transform.position;
         GetComponent<Rigidbody2D>().mass = mass;
@@ -28,9 +28,12 @@ public class FallingPlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (FallOnExit || triggerd) return;
-        if (link.CanEverBeActivated && !link.IsActivated) return;
-        if (collision.collider.gameObject.layer != TriggerLayer) return;
+        if ((FallOnExit || triggerd) ||
+            (link.CanEverBeActivated && !link.IsActivated) ||
+            (collision.collider.gameObject.layer != TriggerLayer))
+        {
+            return;
+        }
 
         triggerd = true;
         Invoke("StartFalling", EnterTime);
@@ -38,9 +41,12 @@ public class FallingPlatform : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (!FallOnExit || triggerd) return;
-        if (link.CanEverBeActivated && !link.IsActivated) return;
-        if (collision.collider.gameObject.layer != TriggerLayer) return;
+        if ((!FallOnExit || triggerd) ||
+            (link.CanEverBeActivated && !link.IsActivated) ||
+            (collision.collider.gameObject.layer != TriggerLayer))
+        {
+            return;
+        }
 
         triggerd = true;
         Invoke("StartFalling", ExitTime);

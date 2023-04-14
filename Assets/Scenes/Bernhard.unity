@@ -742,26 +742,18 @@ PrefabInstance:
     - target: {fileID: 1592565082343082258, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6b2284affa9bbc04e861dc68920d31a0, type: 3}
+      objectReference: {fileID: 21300000, guid: 629161d3af9caf74ca21ea50b36e42b3, type: 3}
     - target: {fileID: 1592565082343082259, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1592565082343082259, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1592565082343082259, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1592565082343082259, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.47
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 1592565082343082259, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.71
+      value: -4.65
       objectReference: {fileID: 0}
     - target: {fileID: 1592565082343082259, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
       propertyPath: m_LocalPosition.z
@@ -796,36 +788,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1592565082343082261, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
-      propertyPath: m_Size.x
-      value: 19.23543
-      objectReference: {fileID: 0}
-    - target: {fileID: 1592565082343082261, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
-      propertyPath: m_Size.y
-      value: 0.55958414
-      objectReference: {fileID: 0}
-    - target: {fileID: 1592565082343082261, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.016791344
-      objectReference: {fileID: 0}
-    - target: {fileID: 1592565082343082261, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.08203673
-      objectReference: {fileID: 0}
-    - target: {fileID: 1592565082343082261, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 19.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1592565082343082261, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.07
+      value: 1.32
       objectReference: {fileID: 0}
     - target: {fileID: 1592565082343082263, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
       propertyPath: m_Name
       value: Conveyor Belt
-      objectReference: {fileID: 0}
-    - target: {fileID: 1592565082343082263, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
@@ -886,32 +854,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0edc1ed78fe0d774c90382ec9000e1a6, type: 3}
---- !u!1 &1904596387 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1592565082343082263, guid: d1a3940db883c794eb17bde7f92df875, type: 3}
-  m_PrefabInstance: {fileID: 1885305500}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1904596392
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1904596387}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 64897222f8f73d2488e0d0b93a616877, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1977516372
 PrefabInstance:
   m_ObjectHideFlags: 0
