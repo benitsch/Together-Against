@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerHealth : Damageable
+public class Respawnable : Damageable
 {
     Vector3 pos;
     [SerializeField] private GameObject particle;
+
+    public bool canRespawn = true;
+    [Range(1, 30)] public float respawnTime = 3.0f;
 
     private void Start()
     {
@@ -25,9 +28,13 @@ public class PlayerHealth : Damageable
 
     private void SetRespawn()
     {
+        if(!canRespawn)
+        {
+            return;
+        }
         Destroy(Instantiate(particle, transform.position, Quaternion.identity), 2);
         gameObject.SetActive(false);
-        Invoke("Respawn", 3);
+        Invoke("Respawn", respawnTime);
     }
 
     void Respawn()
