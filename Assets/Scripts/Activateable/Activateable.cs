@@ -1,37 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+public enum ActivationRequirementMode
+{
+    OnlyOne,
+    All
+}
 public delegate void OnActivationChangedDelegate(bool isActive);
 public class Activateable : MonoBehaviour
 {
+    [SerializeField]
+    private List<Interactable> LinkedInteractables = new List<Interactable>();
     OnActivationChangedDelegate OnActiveChanged;
+    public ActivationRequirementMode ActivationMode;
+
     [SerializeField]
     private int Counter = 0;
-    // Start is called before the first frame update
-    public void Activate()
-    {
-        this.Counter++;
-        if(this.Counter == 1)
-        {
-            OnActiveChanged?.Invoke(true);
-            this.Activate_Implementation();
-        }
-    }
+    public bool IsActivated = false;
 
     protected virtual void Activate_Implementation()
     {
 
-    }
-
-    public void Deactivate()
-    {
-        this.Counter--;
-        Debug.Assert(this.Counter >= 0);
-        if(this.Counter == 0)
-        {
-            OnActiveChanged?.Invoke(false);
-            this.Deactivate_Implementation();
-        }
     }
 
     protected virtual void Deactivate_Implementation()
@@ -39,8 +30,40 @@ public class Activateable : MonoBehaviour
 
     }
 
-    public bool IsActive()
+    public void LinkUp(Interactable i)
     {
-        return this.Counter > 0;
+        LinkedInteractables.Add(i);
+        i.OnActivationStateChanged += NotifyInteractableActiveChanged;
+    }
+
+    private void NotifyInteractableActiveChanged(Interactable i, bool isActive)
+    {
+        if (LinkedInteractables.Contains(i))
+        {
+            if (isActive)
+            {
+                this.Counter++;
+                if (ActivationMode == ActivationRequirementMode.OnlyOne && this.Counter == 1)
+                {
+                    this.Activate_Implementation();
+                }
+                else if (ActivationMode == ActivationRequirementMode.All && this.Counter == LinkedInteractables.Count)
+                {
+                    this.Activate_Implementation();
+                }
+            }
+            else if (!isActive)
+            {
+                this.Counter--;
+                if (ActivationMode == ActivationRequirementMode.OnlyOne && this.Counter == 0)
+                {
+                    this.Activate_Implementation();
+                }
+                else if (ActivationMode == ActivationRequirementMode.All && this.Counter < LinkedInteractables.Count)
+                {
+                    this.Activate_Implementation();
+                }
+            }
+        }
     }
 }
