@@ -1,0 +1,8 @@
+intro idle-0 -> 4 Frames
+
+loop
+
+idle-0 -> 4 Frames
+idle-1 -> 2 Frames
+idle-0 -> 4 Frames
+idle-2 -> 2 Frames
