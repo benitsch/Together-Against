@@ -34,7 +34,7 @@ public class GameEventManager : Singleton<GameEventManager>
     {
         if(Player2ReachedFinish || Player1ReachedFinish)
         {
-            OnLevelTimeEnded?.Invoke();
+            NotifyPlayLevelTransition?.Invoke();
         }
         else
         {
@@ -58,8 +58,6 @@ public class GameEventManager : Singleton<GameEventManager>
             float timeElapsed = Time.timeSinceLevelLoad - timeWhenFirstPlayerReachedEnd;
             
             int score = (int)(endgameTime - timeElapsed);
-
-            Debug.Log("Time left : " + timeElapsed + ", score time : " + score);
 
             if (whoReachedFinishFirst == 0)
             {
