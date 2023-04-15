@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI/MenuStyles.uss?fileID=7433441132597879392&amp;guid=e712333124a1676458afa46a8f902636&amp;type=3#MenuStyles" />
     <ui:VisualElement name="CenterSection" style="background-color: rgba(0, 0, 0, 0); width: 50%; height: 100%; margin-left: auto; align-items: center; margin-right: auto;">
         <ui:VisualElement name="titleContainer" style="align-items: center;">
-            <ui:Label text="Together Against" display-tooltip-when-elided="true" name="titleLabel" style="font-size: 60px; color: rgb(0, 0, 0); -unity-font: url(&apos;project://database/Assets/Fonts/FrederickatheGreat-Regular.ttf?fileID=12800000&amp;guid=76ab272695bdee3b4a7e8b47802786ce&amp;type=3#FrederickatheGreat-Regular&apos;); -unity-font-definition: url(&apos;project://database/Assets/Fonts/FrederickatheGreat-Regular%20SDF.asset?fileID=11400000&amp;guid=39e1dcda4aa69dcdea4e12291ba5b1cc&amp;type=2#FrederickatheGreat-Regular SDF&apos;);" />
+            <ui:Label text="Together Against" display-tooltip-when-elided="true" name="titleLabel" style="font-size: 60px; color: rgb(0, 0, 0); -unity-font: url(&apos;project://database/Assets/Fonts/FrederickatheGreat-Regular.ttf?fileID=12800000&amp;guid=76ab272695bdee3b4a7e8b47802786ce&amp;type=3#FrederickatheGreat-Regular&apos;); -unity-font-definition: url(&apos;project://database/Assets/Fonts/FrederickatheGreat-Regular%20SDF.asset?fileID=11400000&amp;guid=39e1dcda4aa69dcdea4e12291ba5b1cc&amp;type=2#FrederickatheGreat-Regular SDF&apos;); margin-top: 30px;" />
         </ui:VisualElement>
         <ui:VisualElement name="Buttons" style="justify-content: center; flex-grow: 1; padding-bottom: 20%;">
             <ui:Button text="Play" display-tooltip-when-elided="true" name="PlayButton" class="menu-button" />

@@ -207,7 +207,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &881742877
+--- !u!1001 &661971528
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -306,6 +306,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background
       objectReference: {fileID: 0}
+    - target: {fileID: 1938504196725378210, guid: 8f8e559373746474e8705a4143a14521, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 24864a7760a73834e8154fb31b935a0c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f8e559373746474e8705a4143a14521, type: 3}
 --- !u!1 &1625709867
