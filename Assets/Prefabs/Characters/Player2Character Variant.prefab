@@ -24,6 +24,10 @@ PrefabInstance:
       value: 274
       objectReference: {fileID: 0}
     - target: {fileID: 1074223979275029577, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
+      propertyPath: playerID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074223979275029577, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
       propertyPath: moveLeftKey
       value: 276
       objectReference: {fileID: 0}
