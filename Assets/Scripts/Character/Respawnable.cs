@@ -29,6 +29,9 @@ public class Respawnable : Damageable
 
     public void SetRespawn()
     {
+        PlayerController pc = GetComponent<PlayerController>();
+        if (pc != null) GameEventManager.Instance.PlayerDied(pc.playerID);
+
         if(!canRespawn) return;
 
         gameObject.SetActive(false);
