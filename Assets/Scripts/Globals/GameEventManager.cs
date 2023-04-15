@@ -32,7 +32,14 @@ public class GameEventManager : Singleton<GameEventManager>
     public float endgameTime = 60f;
     public void LevelTimeEnded()
     {
-        OnLevelTimeEnded?.Invoke();
+        if(Player2ReachedFinish || Player1ReachedFinish)
+        {
+            OnLevelTimeEnded?.Invoke();
+        }
+        else
+        {
+            SceneManager.LoadScene("GameOver");
+        }
         ClearDelegates();
     }
 
@@ -48,11 +55,11 @@ public class GameEventManager : Singleton<GameEventManager>
         }
         if(whoReachedFinishFirst != -1)
         {
-            float timeLeft = Time.timeSinceLevelLoad - timeWhenFirstPlayerReachedEnd;
+            float timeElapsed = Time.timeSinceLevelLoad - timeWhenFirstPlayerReachedEnd;
             
-            int score = (int)(endgameTime - timeLeft);
+            int score = (int)(endgameTime - timeElapsed);
 
-            Debug.Log("Time left : " + timeLeft + ", score time : " + score);
+            Debug.Log("Time left : " + timeElapsed + ", score time : " + score);
 
             if (whoReachedFinishFirst == 0)
             {
