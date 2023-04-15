@@ -195,6 +195,7 @@ MonoBehaviour:
   lvl8SceneName: Level8
   lvl9SceneName: Level9
   lvl10SceneName: Level10
+  lvl11SceneName: Level11
 --- !u!1 &1336957983
 GameObject:
   m_ObjectHideFlags: 0

@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a935a9b724fb61da8a819526f5f683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playSceneName: Level1
+  playSceneName: InitialLevel
   instructionsSceneName: Instructions
   levelSelectSceneName: LevelSelect
   creditsSceneName: Credits
