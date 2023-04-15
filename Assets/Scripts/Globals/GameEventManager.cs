@@ -28,7 +28,8 @@ public class GameEventManager : Singleton<GameEventManager>
     public int Player1Score = 0;
     public int Player2Score = 0;
     public int whoReachedFinishFirst = -1;
-
+    public float timeWhenFirstPlayerReachedEnd = 0;
+    public float endgameTime = 60f;
     public void LevelTimeEnded()
     {
         OnLevelTimeEnded?.Invoke();
@@ -37,10 +38,48 @@ public class GameEventManager : Singleton<GameEventManager>
 
     public void ChangeLevel(int nextLevel)
     {
+        if(Player1ReachedFinish)
+        {
+            Player1Score = Player1Score + 3;
+        }
+        if(Player2ReachedFinish)
+        {
+            Player2Score = Player2Score + 3;
+        }
+        if(whoReachedFinishFirst != -1)
+        {
+            float timeLeft = Time.timeSinceLevelLoad - timeWhenFirstPlayerReachedEnd;
+            
+            int score = (int)(endgameTime - timeLeft);
+
+            Debug.Log("Time left : " + timeLeft + ", score time : " + score);
+
+            if (whoReachedFinishFirst == 0)
+            {
+                Player1Score += score;
+            }
+            else if (whoReachedFinishFirst == 1)
+            {
+                Player2Score += score;
+            }
+        }
         ClearDelegates();
+        whoReachedFinishFirst = -1;
+        timeWhenFirstPlayerReachedEnd = 0;
         Player1ReachedFinish = false;
         Player2ReachedFinish = false;
         SceneManager.LoadScene(nextLevel);
+    }
+
+    public void FullReset()
+    {
+        ClearDelegates();
+        whoReachedFinishFirst = -1;
+        timeWhenFirstPlayerReachedEnd = 0;
+        Player1ReachedFinish = false;
+        Player2ReachedFinish = false;
+        Player1Score = 0;
+        Player2Score = 0;
     }
 
     private void ClearDelegates()
@@ -51,42 +90,38 @@ public class GameEventManager : Singleton<GameEventManager>
     }
     public void PlayerScoreEvent(int playerID, PlayerScoreReason scoreReason)
     {
-        int targetPlayerID = 0;
         switch (scoreReason)
         {
             case PlayerScoreReason.None:
                 break;
             case PlayerScoreReason.OffScreen:
-                targetPlayerID = 1 - playerID;
                 if (playerID == 0)
                 {
-                    Player1Score = Player1Score + 1;
+                    Player2Score = Player1Score + 1;
                 }
                 else
                 {
-                    Player2Score = Player2Score + 1;
+                    Player1Score = Player1Score + 1;
                 }
                 break;
             case PlayerScoreReason.HazardDeath:
-                targetPlayerID = 1 - playerID;
                 if(playerID == 0)
                 {
-                    Player1Score = Player1Score + 1;
+                    Player2Score = Player2Score + 1;
                 }
                 else
                 {
-                    Player2Score = Player2Score + 1;
+                    Player1Score = Player1Score + 1;
                 }
                 break;
             case PlayerScoreReason.Conveyor:
-                targetPlayerID = 1 - playerID;
                 if (playerID == 0)
                 {
-                    Player1Score = Player1Score + 1;
+                    Player2Score = Player2Score + 1;
                 }
                 else
                 {
-                    Player2Score = Player2Score + 1;
+                    Player1Score = Player1Score + 1;
                 }
                 break;
         }
@@ -103,7 +138,7 @@ public class GameEventManager : Singleton<GameEventManager>
                 whoReachedFinishFirst = 0;
             }
         }
-        if(playerID == 1)
+        else if(playerID == 1)
         {
             Player2ReachedFinish = true;
             if(whoReachedFinishFirst == -1)
@@ -117,7 +152,8 @@ public class GameEventManager : Singleton<GameEventManager>
         }
         else
         {
-            OnPlayerReachedFinish?.Invoke(playerID, 60.0f);
+            timeWhenFirstPlayerReachedEnd = Time.timeSinceLevelLoad;
+            OnPlayerReachedFinish?.Invoke(playerID, endgameTime);
         }
     }
 
