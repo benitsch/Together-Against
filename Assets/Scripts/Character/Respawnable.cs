@@ -18,6 +18,7 @@ public class Respawnable : Damageable
 
     public override void Damage_Implementation()
     {
+        Destroy(Instantiate(particle, transform.position, Quaternion.identity), 5);
         SetRespawn();
     }
 
@@ -26,11 +27,13 @@ public class Respawnable : Damageable
         SetRespawn();
     }
 
-    private void SetRespawn()
+    public void SetRespawn()
     {
+        PlayerController pc = GetComponent<PlayerController>();
+        if (pc != null) GameEventManager.Instance.PlayerDied(pc.playerID);
+
         if(!canRespawn) return;
 
-        Destroy(Instantiate(particle, transform.position, Quaternion.identity), 3);
         gameObject.SetActive(false);
         Invoke("Respawn", respawnTime);
     }

@@ -10,12 +10,12 @@ public class GameEventManager : Singleton<GameEventManager>
     OnPlayerEventDelegate OnPlayerDeath;
     OnPlayerEventDelegate OnPlayerReachedFinish;
 
-    void PlayerDied(int playerID)
+    public void PlayerDied(int playerID)
     {
         OnPlayerDeath?.Invoke(playerID);
     }
 
-    void PlayerReachedFinish(int playerID)
+    public void PlayerReachedFinish(int playerID)
     {
         OnPlayerReachedFinish?.Invoke(playerID);
     }
