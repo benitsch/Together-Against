@@ -104,7 +104,7 @@ public class GameEventManager : Singleton<GameEventManager>
             case PlayerScoreReason.OffScreen:
                 if (playerID == 0)
                 {
-                    Player2Score = Player1Score + 1;
+                    Player2Score = Player2Score + 1;
                 }
                 else
                 {
