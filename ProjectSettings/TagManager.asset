@@ -41,3 +41,33 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: New Layer 1
+    uniqueID: 2793084191
+    locked: 0
+  - name: Decoration
+    uniqueID: 1455724191
+    locked: 0
+  - name: Shields
+    uniqueID: 2796213157
+    locked: 0
+  - name: New Layer 4
+    uniqueID: 3680719673
+    locked: 0
+  - name: Platform
+    uniqueID: 2512557243
+    locked: 0
+  - name: Items
+    uniqueID: 2438247029
+    locked: 0
+  - name: New Layer 7
+    uniqueID: 1571920225
+    locked: 0
+  - name: New Layer 8
+    uniqueID: 4067586649
+    locked: 0
+  - name: New Layer 9
+    uniqueID: 257182131
+    locked: 0
+  - name: Player
+    uniqueID: 3735971285
+    locked: 0
