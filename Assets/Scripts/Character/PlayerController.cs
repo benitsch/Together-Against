@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public KeyCode useKey = KeyCode.E;
     public KeyCode throwKey = KeyCode.F;
 
+    [Range(0, 1)] public int playerID = 0;
 
     [ReadOnly] public bool movementControlsLocked = false;
 

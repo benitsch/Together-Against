@@ -13,7 +13,7 @@ public delegate void OnIsActivatedChangedDelegate(Activateable a, bool isActive)
 public class Activateable : MonoBehaviour
 {
     public List<Interactable> LinkedInteractables = new List<Interactable>();
-    OnIsActivatedChangedDelegate OnIsActivatedChanged;
+    public OnIsActivatedChangedDelegate OnIsActivatedChanged;
     public ActivationRequirementMode ActivationMode;
     [Range(1,10)]
     public int MinimumRequired = 1;
