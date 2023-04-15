@@ -12,6 +12,7 @@ public class Interactable : MonoBehaviour
     private List<Activateable> Activateables = new List<Activateable>();
     protected virtual void Awake()
     {
+        Activateables.RemoveAll( a => a == null );
         foreach (Activateable a in Activateables)
         {
             a.LinkUp(this);

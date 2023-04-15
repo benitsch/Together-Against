@@ -355,7 +355,7 @@ MonoBehaviour:
   groundCheckRadius: 0.301
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1224
+    m_Bits: 1736
   canEverJump: 1
   animator: {fileID: 0}
 --- !u!50 &8633713224930894646
