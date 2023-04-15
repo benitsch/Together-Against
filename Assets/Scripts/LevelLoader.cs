@@ -1,28 +1,34 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using FirstGearGames.SmoothCameraShaker;
 
 public class LevelLoader : MonoBehaviour
 {
 
     [SerializeField] private Animator transition;
     [SerializeField] private float transitionTime = 1.0f;
-   
+    [SerializeField] private ShakeData shakeData;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        // TODO Add a condition to execute LoadNextLevel when the level is done and the next level should be loaded!
-        //LoadNextLevel();
+        GameEventManager.Instance.NotifyPlayLevelTransition += PlaySceneTransition;
     }
 
-    private void LoadNextLevel()
+    void PlaySceneTransition()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(StartCameraShake());
+        StartCoroutine(StartCrossfade(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    IEnumerator LoadLevel(int levelIndex)
+    IEnumerator StartCameraShake()
+    {
+        CameraShakerHandler.Shake(shakeData);
+
+        yield return new WaitForSeconds(4.0f);
+    }
+
+    IEnumerator StartCrossfade(int levelIndex)
     {
         // Play Crossfade animation
         transition.SetTrigger("StartCrossfade");
@@ -31,6 +37,6 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
 
         // Load next Scene
-        SceneManager.LoadScene(levelIndex);
+        GameEventManager.Instance.ChangeLevel(levelIndex);
     }
 }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8833583807123404839}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TargetLocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7817608116042746243}
   - component: {fileID: 2871071175371275536}
   - component: {fileID: 5808510756616096065}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
