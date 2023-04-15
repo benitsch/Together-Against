@@ -94,7 +94,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 12f101b36e29fcb44b294736b56b322d, type: 3}
   m_Color: {r: 0.5660378, g: 0.2562489, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,14 +122,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.77, y: 0.7}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.65, y: 0.6}
   m_EdgeRadius: 0
 --- !u!50 &816015614830763182
 Rigidbody2D:
@@ -165,6 +165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 1479200189748812058, guid: e3ff28473cadf2b4fa4677a1791b387b, type: 3}
+  canRespawn: 1
+  respawnTime: 3
 --- !u!1 &5870949201635688028
 GameObject:
   m_ObjectHideFlags: 0
