@@ -25,6 +25,8 @@ public class LevelTimerController : MonoBehaviour
    {
     _doc = GetComponent<UIDocument>();
     _timerLabel = _doc.rootVisualElement.Q<Label>("TimerLabel");
+
+    GameEventManager.Instance.OnPlayerReachedFinish += OnPlayerReachedFinish;
    }
 
    private void Start()
@@ -63,9 +65,12 @@ public class LevelTimerController : MonoBehaviour
    }
 
    private void TimerElapsed(){
-      // switch to game over screen
-      Debug.Log("Game over, level timer elapsed");
-      SceneManager.LoadScene(gameOverSceneName);
+     GameEventManager.Instance.OnLevelTimeEnded();
+   }
+
+   private void OnPlayerReachedFinish(int playerId/*, float newTimeLeft*/){
+     // TODO: param and assignment commented out to avoid compiler error
+     //timeLeft = newTimeLeft;
    }
 
 }
