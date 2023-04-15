@@ -15,6 +15,7 @@
             <ui:Button text="Level 9" display-tooltip-when-elided="true" name="BtnLvl9" class="menu-button" style="justify-content: flex-end;" />
             <ui:Button text="Level 10" display-tooltip-when-elided="true" name="BtnLvl10" class="menu-button" style="justify-content: flex-end;" />
             <ui:Button text="Level 11" display-tooltip-when-elided="true" name="BtnLvl11" class="menu-button" style="justify-content: flex-end;" />
+            <ui:Button text="Level 12" display-tooltip-when-elided="true" name="BtnLvl12" class="menu-button" style="justify-content: flex-end;" />
         </ui:ScrollView>
     </ui:VisualElement>
     <ui:VisualElement name="BackSection" style="background-color: rgba(0, 0, 0, 0); width: 50%; height: 10%; margin-left: auto; align-items: center; margin-right: auto; margin-top: 0; flex-direction: column; justify-content: flex-end; position: absolute; bottom: 0; left: 25%; right: 0;">
