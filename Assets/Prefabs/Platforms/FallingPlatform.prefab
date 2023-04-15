@@ -69,13 +69,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FallOnExit: 0
-  EnterTime: 4
-  ExitTime: 2
+  EnterTime: 2
+  ExitTime: 1
   FallTime: 5
   RespawnTime: 10
   TriggerLayer: 3
   mass: 100
-  drag: 20
+  drag: 15
 --- !u!114 &2331303736196117286
 MonoBehaviour:
   m_ObjectHideFlags: 0
