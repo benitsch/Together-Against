@@ -25,6 +25,8 @@ public class CharacterMovement : MonoBehaviour
     public bool canEverJump = true;
     private bool wantsToJump = false;
 
+    [ReadOnly, SerializeField] bool bIsOnGround = false;
+
     public Animator animator;
     [ReadOnly, SerializeField] private Pickup myPickup;
     [ReadOnly, SerializeField] private bool isPickedUp = false;
@@ -113,11 +115,10 @@ public class CharacterMovement : MonoBehaviour
         lockMovementTimer = Math.Max(0, lockMovementTimer - Time.fixedDeltaTime);
 
         Vector2 velocity = body.velocity;
-        Vector2 oldVeocity = velocity;
 
         bool isGrounded = IsGrounded();
 
-        if(movementInput.x != 0 && movementInput.x != previousMovementInput.x)
+        if (movementInput.x != 0 && movementInput.x != previousMovementInput.x)
         {
             transform.rotation = movementInput.x > 0 ? Quaternion.Euler(0, 0f, 0) : Quaternion.Euler(0, 180f, 0);
         }
@@ -125,14 +126,13 @@ public class CharacterMovement : MonoBehaviour
         {
             if (movementInput.x != 0)
             {
-                velocity = new Vector2(movementInput.x * movementSpeed * Time.fixedDeltaTime, body.velocity.y);
+                velocity = new Vector2(movementInput.x * movementSpeed * Time.fixedDeltaTime, velocity.y);
             }
             else if (!isGrounded)
             {
                 velocity.x = 0;
             }
         }
-
         if (wantsToJump)
         {
             if (IsGrounded())
@@ -146,9 +146,14 @@ public class CharacterMovement : MonoBehaviour
         }
         wantsToJump = false;
 
-        body.velocity = skipMovementCalc ? velocity : Vector3.SmoothDamp(body.velocity, velocity, ref currentVelocity, movementSmoothing);
+        body.velocity = skipMovementCalc ? body.velocity : Vector3.SmoothDamp(body.velocity, velocity, ref currentVelocity, movementSmoothing);
 
         previousMovementInput = movementInput;
+    }
+
+    private void LateUpdate()
+    {
+        Debug.Log(body.velocity);
     }
 
     public bool IsGrounded()
