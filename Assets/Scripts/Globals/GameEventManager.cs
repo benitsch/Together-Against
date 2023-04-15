@@ -16,8 +16,6 @@ public delegate void OnFloatEventDelegate(int playerID, float newRemainingTime);
 public delegate void OnGenericEventDelegate();
 public class GameEventManager : Singleton<GameEventManager>
 {
-
-
     private static GameEventManager instance;
 
     public OnPlayerScoreEventDelegate OnPlayerScoreEvent;
@@ -107,7 +105,7 @@ public class GameEventManager : Singleton<GameEventManager>
         }
         if(playerID == 1)
         {
-            Player1ReachedFinish = true;
+            Player2ReachedFinish = true;
             if(whoReachedFinishFirst == -1)
             {
                 whoReachedFinishFirst = 1;
