@@ -7,13 +7,15 @@ public delegate void OnPickedUpDelegate(Pickup pickedUpItem);
 public delegate void OnDroppedDelegate(Pickup pickup, DropType dropType);
 public enum DropType
 {
+    None,
     Dropped,
+    Thrown,
     BrokeFree
 }
 public class Pickup : MonoBehaviour
 {
     public OnPickedUpDelegate OnPickedUp;
-    public OnDroppedDelegate OnDropped;
+    public OnDroppedDelegate OnNoLongerPickedUp;
 
     [ReadOnly, SerializeField] private PlayerController pickedUpBy = null;
     Rigidbody2D body = null;
@@ -56,15 +58,18 @@ public class Pickup : MonoBehaviour
         joint.target = pc.pickupSlotLocation.position;
         //joint.enableCollision = false;
         coll.enabled = false;
-        joint.breakForce = gameObject.CompareTag("Player") ? 1000 : 1000;
         joint.maxForce = maxForce;
+
         Invoke("ReenableCollision", 1f);
     }
 
     private void OnJointBreak2D(Joint2D joint)
     {
-        DropInternal(null, DropType.BrokeFree);
-        FinalizeDropped();
+        if(pickedUpBy == null)
+        {
+            return;
+        }
+        FinalizeDropped(DropType.BrokeFree);
     }
 
     public void ReenableCollision()
@@ -78,40 +83,37 @@ public class Pickup : MonoBehaviour
         {
             return false;
         }
-        joint.target = dropLocation;
-        return DropInternal(pc, DropType.Dropped);
-    }
-
-    protected bool DropInternal(PlayerController pc, DropType dropType)
-    {
         pickedUpBy = null;
-        if (dropType == DropType.Dropped)
-        {
-            
-            Bounds myBounds = Utility.GetBounds2D(transform);
-            Bounds otherBounds = Utility.GetBounds2D(pc.transform);
-            //float toMove = myBounds.size
-            CancelInvoke("ReenableCollision");
-            //collider.enabled = false;
+        joint.target = dropLocation;
+        CancelInvoke("ReenableCollision");
+        Invoke("PostDropAnimation", 0.5f);
 
-            //body.AddForce(new Vector2(pc.transform.forward.x * 300, 300), ForceMode2D.Force);
-            //FinalizeDropped();
-            Invoke("FinalizeDropped", 0.5f);
-        }
-        else if(dropType == DropType.BrokeFree)
-        {
-            FinalizeDropped();
-        }
-        OnDropped?.Invoke(this, dropType);
         return true;
     }
 
-    void FinalizeDropped()
+    public void BreakFree()
+    {
+        CancelInvoke("ReenableCollision");
+        FinalizeDropped(DropType.BrokeFree);
+    }
+
+    internal void Throw(Vector2 throwVelocity)
+    {
+        body.velocity = throwVelocity;
+        FinalizeDropped(DropType.Thrown);
+    }
+
+    void PostDropAnimation()
+    {
+        FinalizeDropped(DropType.Dropped);
+    }
+    void FinalizeDropped(DropType dropType)
     {
         CancelInvoke("FinalizeDropped");
         pickedUpBy = null;
         coll.enabled = true;
         GameObject.Destroy(joint);
         joint = null;
+        OnNoLongerPickedUp?.Invoke(this, dropType);
     }
 }

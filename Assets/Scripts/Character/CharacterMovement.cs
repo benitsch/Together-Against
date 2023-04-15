@@ -30,6 +30,9 @@ public class CharacterMovement : MonoBehaviour
     [ReadOnly, SerializeField] private bool isPickedUp = false;
 
     [ReadOnly, SerializeField] protected int lockMovementCounter = 0;
+    [ReadOnly, SerializeField] protected float lockMovementTimer = 0;
+
+    
 
     private void Awake()
     {
@@ -47,6 +50,10 @@ public class CharacterMovement : MonoBehaviour
     private void NotifyNoLongerPickedUp(Pickup pickedUpItem, DropType dropType)
     {
         isPickedUp = false;
+        if(dropType == DropType.Thrown)
+        {
+            lockMovementTimer = 0.5f;
+        }
     }
 
     private void NotifyPickedUp(Pickup pickedUpItem)
@@ -74,7 +81,7 @@ public class CharacterMovement : MonoBehaviour
 
     public bool IsMovementLocked()
     {
-        return isPickedUp || lockMovementCounter > 0;
+        return isPickedUp || lockMovementCounter > 0 || lockMovementTimer > 0;
     }
 
     // Update is called once per frame
@@ -98,11 +105,13 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(IsMovementLocked())
+        bool skipMovementCalc = IsMovementLocked();
+        if (skipMovementCalc)
         {
             movementInput = Vector2.zero;
-            return;
         }
+        lockMovementTimer = Math.Max(0, lockMovementTimer - Time.fixedDeltaTime);
+
         Vector2 velocity = body.velocity;
         Vector2 oldVeocity = velocity;
 
@@ -112,14 +121,16 @@ public class CharacterMovement : MonoBehaviour
         {
             transform.rotation = movementInput.x > 0 ? Quaternion.Euler(0, 0f, 0) : Quaternion.Euler(0, 180f, 0);
         }
-
-        if (movementInput.x != 0)
+        if(!skipMovementCalc)
         {
-            velocity = new Vector2(movementInput.x * movementSpeed * Time.fixedDeltaTime, body.velocity.y);
-        }
-        else if (!isGrounded)
-        {
-            velocity.x = 0;
+            if (movementInput.x != 0)
+            {
+                velocity = new Vector2(movementInput.x * movementSpeed * Time.fixedDeltaTime, body.velocity.y);
+            }
+            else if (!isGrounded)
+            {
+                velocity.x = 0;
+            }
         }
 
         if (wantsToJump)
@@ -135,7 +146,7 @@ public class CharacterMovement : MonoBehaviour
         }
         wantsToJump = false;
 
-        body.velocity = Vector3.SmoothDamp(body.velocity, velocity, ref currentVelocity, movementSmoothing);
+        body.velocity = skipMovementCalc ? velocity : Vector3.SmoothDamp(body.velocity, velocity, ref currentVelocity, movementSmoothing);
 
         previousMovementInput = movementInput;
     }
