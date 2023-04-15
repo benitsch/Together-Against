@@ -42,6 +42,8 @@ public class LevelSelectController : MonoBehaviour
     [SerializeField]
     string lvl11SceneName;
 
+    [SerializeField]
+    string lvl12SceneName;
 
     private UIDocument _doc;
    private Button button;
@@ -108,6 +110,13 @@ public class LevelSelectController : MonoBehaviour
     {
         button.clicked += () => { SceneManager.LoadScene(lvl11SceneName); };
     }
+
+    button = _doc.rootVisualElement.Q<Button>("BtnLvl12");
+    if (button != null)
+    {
+        button.clicked += () => { SceneManager.LoadScene(lvl12SceneName); };
+    }
+
     }
 
 }
