@@ -39,4 +39,10 @@ public class LevelLoader : MonoBehaviour
         // Load next Scene
         GameEventManager.Instance.ChangeLevel(levelIndex);
     }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+        GameEventManager.Instance.NotifyPlayLevelTransition -= PlaySceneTransition;
+    }
 }
