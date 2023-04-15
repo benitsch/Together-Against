@@ -21,7 +21,7 @@ public class GameEventManager : Singleton<GameEventManager>
     private static GameEventManager instance;
 
     public OnPlayerEventDelegate OnPlayerScoreEvent;
-    public OnPlayerEventDelegate OnPlayerReachedFinish;
+    public OnFloatEventDelegate OnPlayerReachedFinish;
     public OnGenericEventDelegate OnLevelTimeEnded;
     public OnGenericEventDelegate NotifyPlayLevelTransition;
 
@@ -29,6 +29,7 @@ public class GameEventManager : Singleton<GameEventManager>
     public bool Player2ReachedFinish = false;
     public int Player1Score = 0;
     public int Player2Score = 0;
+    public int whoReachedFinishFirst = -1;
 
     public void LevelTimeEnded()
     {
@@ -99,19 +100,26 @@ public class GameEventManager : Singleton<GameEventManager>
         if(playerID == 0)
         {
             Player1ReachedFinish = true;
+            if (whoReachedFinishFirst == -1)
+            {
+                whoReachedFinishFirst = 0;
+            }
         }
         if(playerID == 1)
         {
             Player1ReachedFinish = true;
+            if(whoReachedFinishFirst == -1)
+            {
+                whoReachedFinishFirst = 1;
+            }
         }
-        OnPlayerReachedFinish?.Invoke(playerID);
         if(HaveBothFinishedLevel())
         {
-
+            NotifyPlayLevelTransition?.Invoke();
         }
         else
         {
-            OnPlayerReachedFinish?.Invoke(playerID);
+            OnPlayerReachedFinish?.Invoke(playerID, 60.0f);
         }
     }
 
