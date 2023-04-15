@@ -2,24 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlatformDirection
+{
+    PositionA,
+    PositionB
+}
+
 public class MovingPlatform : Activateable
 {
     [SerializeField] private Transform posA, posB;
     [SerializeField] private float speed = 2.5f;
     [SerializeField] private bool defaultIsMoving = true;
+    [SerializeField] private bool beginAnywhere = false;
+    [SerializeField] private PlatformDirection beginDirection = PlatformDirection.PositionB;
     
     private Vector2 targetPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        targetPos = posB.position;
+        if (beginDirection == PlatformDirection.PositionA) {
+            targetPos = posA.position;
+        } else {
+            targetPos = posB.position;
+        }
         
         if (defaultIsMoving) {
             Activate();
         }
 
-        transform.position = (posA.position + posB.position) /2f;
+        if (!beginAnywhere) {
+            transform.position = (posA.position + posB.position) /2f;
+        }
     }
 
     // Update is called once per frame
