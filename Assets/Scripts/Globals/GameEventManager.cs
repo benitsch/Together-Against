@@ -87,7 +87,9 @@ public class GameEventManager : Singleton<GameEventManager>
         OnLevelTimeEnded = null;
         OnPlayerScoreEvent = null;
         OnPlayerReachedFinish = null;
+        NotifyPlayLevelTransition = null;
     }
+
     public void PlayerScoreEvent(int playerID, PlayerScoreReason scoreReason)
     {
         switch (scoreReason)
