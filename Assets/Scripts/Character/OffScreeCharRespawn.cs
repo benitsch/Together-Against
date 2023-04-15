@@ -7,6 +7,6 @@ public class OffScreeCharRespawn : MonoBehaviour
     private void OnBecameInvisible()
     {
         Respawnable res = GetComponentInParent<Respawnable>();
-        if (res != null) res.SetRespawn();
+        if (res != null) res.SetRespawn(PlayerScoreReason.OffScreen);
     }
 }

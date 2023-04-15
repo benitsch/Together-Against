@@ -19,18 +19,18 @@ public class Respawnable : Damageable
     public override void Damage_Implementation()
     {
         Destroy(Instantiate(particle, transform.position, Quaternion.identity), 5);
-        SetRespawn();
+        SetRespawn(PlayerScoreReason.HazardDeath);
     }
 
     private void OnBecameInvisible()
     {
-        SetRespawn();
+        SetRespawn(PlayerScoreReason.None);
     }
 
-    public void SetRespawn()
+    public void SetRespawn(PlayerScoreReason score)
     {
         PlayerController pc = GetComponent<PlayerController>();
-        if (pc != null) GameEventManager.Instance.PlayerDied(pc.playerID);
+        if (pc != null) GameEventManager.Instance.PlayerScoreEvent(pc.playerID, score);
 
         if(!canRespawn) return;
 
