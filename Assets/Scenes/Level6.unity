@@ -1298,6 +1298,10 @@ PrefabInstance:
       value: LevelTitle
       objectReference: {fileID: 0}
     - target: {fileID: 3558818572579198958, guid: 4d844799fac012b4582d136c4cb2b532, type: 3}
+      propertyPath: sceneLevel
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558818572579198958, guid: 4d844799fac012b4582d136c4cb2b532, type: 3}
       propertyPath: sceneTitle
       value: You need me
       objectReference: {fileID: 0}
