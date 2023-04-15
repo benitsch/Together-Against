@@ -57,7 +57,7 @@ public class GameEventManager : Singleton<GameEventManager>
         {
             float timeElapsed = Time.timeSinceLevelLoad - timeWhenFirstPlayerReachedEnd;
             
-            int score = (int)(endgameTime - timeElapsed);
+            int score = (int)timeElapsed;
 
             if (whoReachedFinishFirst == 0)
             {
