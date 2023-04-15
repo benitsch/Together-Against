@@ -40,7 +40,8 @@ public class MenuController : MonoBehaviour
 
     _creditsButton = _doc.rootVisualElement.Q<Button>("CreditsButton");
     _creditsButton.clicked += CreditsButtonClicked;
-   }
+    GameEventManager.Instance.FullReset();
+    }
 
    private void PlayButtonClicked()
    {
