@@ -33,7 +33,7 @@ public class SwitchBehavior : Interactable
         SetActiveState(state);
         ChangeSprite();
         AudioSource.PlayClipAtPoint(audioTrigger, transform.position);
-        Debug.Log("State changed to " + state);
+        // Debug.Log("State changed to " + state);
     }
 
     private void SetIsActivateable(Collider2D collider, bool activateable)
