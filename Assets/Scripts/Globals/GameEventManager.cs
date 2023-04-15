@@ -22,6 +22,7 @@ public class GameEventManager : Singleton<GameEventManager>
     public OnPlayerEventDelegate OnPlayerScoreEvent;
     public OnPlayerEventDelegate OnPlayerReachedFinish;
     public OnGenericEventDelegate OnLevelTimeEnded;
+    public OnGenericEventDelegate ChangeToNextLevel;
 
     public bool Player1ReachedFinish = false;
     public bool Player2ReachedFinish = false;
@@ -80,17 +81,6 @@ public class GameEventManager : Singleton<GameEventManager>
                     Player2Score = Player2Score + 1;
                 }
                 break;
-            case PlayerScoreReason.EndLevelTimer:
-                targetPlayerID = 1 - playerID;
-                if (playerID == 0)
-                {
-                    Player1Score = Player1Score + 1;
-                }
-                else
-                {
-                    Player2Score = Player2Score + 1;
-                }
-                break;
         }
         OnPlayerScoreEvent?.Invoke(playerID);
     }
@@ -106,5 +96,9 @@ public class GameEventManager : Singleton<GameEventManager>
             Player1ReachedFinish = true;
         }
         OnPlayerReachedFinish?.Invoke(playerID);
+        if(Player1ReachedFinish && Player2ReachedFinish)
+        {
+
+        }
     }
 }
