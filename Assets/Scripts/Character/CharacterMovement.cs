@@ -153,11 +153,6 @@ public class CharacterMovement : MonoBehaviour
         previousMovementInput = movementInput;
     }
 
-    private void LateUpdate()
-    {
-        Debug.Log(body.velocity);
-    }
-
     public bool IsGrounded()
     {
         int oldLayer = gameObject.layer; // This variable now stored our original layer
