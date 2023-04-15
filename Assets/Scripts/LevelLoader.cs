@@ -25,7 +25,7 @@ public class LevelLoader : MonoBehaviour
     {
         CameraShakerHandler.Shake(shakeData);
 
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(1.0f);
     }
 
     IEnumerator StartCrossfade(int levelIndex)
@@ -38,5 +38,11 @@ public class LevelLoader : MonoBehaviour
 
         // Load next Scene
         GameEventManager.Instance.ChangeLevel(levelIndex);
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+        GameEventManager.Instance.NotifyPlayLevelTransition -= PlaySceneTransition;
     }
 }

@@ -25,8 +25,6 @@ public class CharacterMovement : MonoBehaviour
     public bool canEverJump = true;
     private bool wantsToJump = false;
 
-    [ReadOnly, SerializeField] bool bIsOnGround = false;
-
     public Animator animator;
     [ReadOnly, SerializeField] private Pickup myPickup;
     [ReadOnly, SerializeField] private bool isPickedUp = false;

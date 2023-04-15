@@ -20,6 +20,8 @@ public class EndScreenController : MonoBehaviour
     _labelPlayer2Score = _doc.rootVisualElement.Q<Label>("Player2Score");
 
     updateWinInformation();
+
+   GameEventManager.Instance.FullReset();
    }
 
    private void updateWinInformation(){
