@@ -32,7 +32,8 @@ public class Respawnable : Damageable
         {
             return;
         }
-        Destroy(Instantiate(particle, transform.position, Quaternion.identity), 2);
+        GameObject deathParticle = Instantiate(particle, transform.position, Quaternion.identity);
+        Destroy(deathParticle, 2);
         gameObject.SetActive(false);
         Invoke("Respawn", respawnTime);
     }
