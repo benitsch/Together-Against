@@ -59,7 +59,7 @@ public class Pickup : MonoBehaviour
         //joint.enableCollision = false;
         coll.enabled = false;
         joint.maxForce = maxForce;
-
+        CancelInvoke();
         Invoke("ReenableCollision", 1f);
     }
 
