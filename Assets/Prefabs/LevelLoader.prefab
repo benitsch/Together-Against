@@ -259,3 +259,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transition: {fileID: 4759115244398870486}
   transitionTime: 1
+  shakeData: {fileID: 11400000, guid: a4205b0c58a66ce449db29f5a012b8cb, type: 2}
