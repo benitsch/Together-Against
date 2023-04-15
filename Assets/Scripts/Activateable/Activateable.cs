@@ -7,6 +7,7 @@ public enum ActivationRequirementMode
 {
     OnlyOne,
     MinumumRequired,
+    Toggle,
     All
 }
 public delegate void OnIsActivatedChangedDelegate(Activateable a, bool isActive);
@@ -67,37 +68,51 @@ public class Activateable : MonoBehaviour
         if (CanEverBeActivated)
         {
             Debug.Assert(LinkedInteractables.Contains(i));
-            if (isActive)
+            if (ActivationMode == ActivationRequirementMode.Toggle)
             {
-                this.Counter++;
-                if (ActivationMode == ActivationRequirementMode.OnlyOne && this.Counter == 1)
+                if (IsActivated)
                 {
-                    this.Activate();
+                    Deactivate();
                 }
-                else if (ActivationMode == ActivationRequirementMode.All && this.Counter == LinkedInteractables.Count)
+                else
                 {
-                    this.Activate();
-                }
-                else if(ActivationMode == ActivationRequirementMode.MinumumRequired && this.Counter >= MinimumRequired)
-                {
-                    this.Activate();
+                    Activate();
                 }
             }
-            else if (!isActive)
+            else
             {
-                Debug.Assert(LinkedInteractables.Contains(i));
-                this.Counter--;
-                if (ActivationMode == ActivationRequirementMode.OnlyOne && this.Counter == 0)
+                if (isActive)
                 {
-                    this.Deactivate();
+                    this.Counter++;
+                    if (ActivationMode == ActivationRequirementMode.OnlyOne && this.Counter == 1)
+                    {
+                        this.Activate();
+                    }
+                    else if (ActivationMode == ActivationRequirementMode.All && this.Counter == LinkedInteractables.Count)
+                    {
+                        this.Activate();
+                    }
+                    else if (ActivationMode == ActivationRequirementMode.MinumumRequired && this.Counter >= MinimumRequired)
+                    {
+                        this.Activate();
+                    }
                 }
-                else if (ActivationMode == ActivationRequirementMode.All && this.Counter < LinkedInteractables.Count)
+                else if (!isActive)
                 {
-                    this.Deactivate();
-                }
-                else if (ActivationMode == ActivationRequirementMode.MinumumRequired && this.Counter < MinimumRequired)
-                {
-                    this.Deactivate();
+                    Debug.Assert(LinkedInteractables.Contains(i));
+                    this.Counter--;
+                    if (ActivationMode == ActivationRequirementMode.OnlyOne && this.Counter == 0)
+                    {
+                        this.Deactivate();
+                    }
+                    else if (ActivationMode == ActivationRequirementMode.All && this.Counter < LinkedInteractables.Count)
+                    {
+                        this.Deactivate();
+                    }
+                    else if (ActivationMode == ActivationRequirementMode.MinumumRequired && this.Counter < MinimumRequired)
+                    {
+                        this.Deactivate();
+                    }
                 }
             }
         }
