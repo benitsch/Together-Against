@@ -13,7 +13,7 @@ public class TimedActivator : Interactable
 
     public bool startActive = false;
     [ReadOnly] public bool isActive = false;
-    private void Awake()
+    protected override void Awake()
     {
         base.Awake();
         isActive = startActive;
