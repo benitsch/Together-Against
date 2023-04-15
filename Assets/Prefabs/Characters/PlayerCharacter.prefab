@@ -190,15 +190,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a865a9260a62c4948a7ca9d5553c2ddc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 541c469b4aaa1774384418d6e8f86d58, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 1.18, y: 1.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &3056643024102807256
@@ -211,7 +211,7 @@ Animator:
   m_GameObject: {fileID: 7313073882990047959}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 20802978590b76e4e836b88bdc7809f6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 019d8bd5ccdc8fc45a31dcf164e4122a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -325,7 +325,7 @@ MonoBehaviour:
   useKey: 101
   throwKey: 102
   playerID: 0
-  movementControlsLocked: 0
+  movementControlsLockCounter: 0
   pickedUpItem: {fileID: 0}
   pickupSlotLocation: {fileID: 1187182804909944127}
   pickupScanLocation: {fileID: 6931700287817149297}
@@ -359,6 +359,10 @@ MonoBehaviour:
     m_Bits: 1736
   canEverJump: 1
   animator: {fileID: 0}
+  myPickup: {fileID: 0}
+  isPickedUp: 0
+  lockMovementCounter: 0
+  lockMovementTimer: 0
 --- !u!50 &8633713224930894646
 Rigidbody2D:
   serializedVersion: 4

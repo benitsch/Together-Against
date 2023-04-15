@@ -35,6 +35,10 @@ PrefabInstance:
       propertyPath: moveRightKey
       value: 275
       objectReference: {fileID: 0}
+    - target: {fileID: 3056643024102807256, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 20802978590b76e4e836b88bdc7809f6, type: 2}
     - target: {fileID: 5216883396063736194, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -80,6 +84,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7143455391048953452, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
+      propertyPath: m_Size.x
+      value: 1.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143455391048953452, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143455391048953452, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8aeadb98ffe63194da067b5db76a9d3e, type: 3}
+    - target: {fileID: 7143455391048953452, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -89,6 +105,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7143455391048953452, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143455391048953452, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8097768310422812657, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
