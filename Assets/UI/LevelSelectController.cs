@@ -37,10 +37,13 @@ public class LevelSelectController : MonoBehaviour
    string lvl9SceneName;
 
    [SerializeField] 
-   string lvl10SceneName; 
-   
+   string lvl10SceneName;
 
-   private UIDocument _doc;
+    [SerializeField]
+    string lvl11SceneName;
+
+
+    private UIDocument _doc;
    private Button button;
    
    private void Awake()
@@ -98,7 +101,13 @@ public class LevelSelectController : MonoBehaviour
     button = _doc.rootVisualElement.Q<Button>("BtnLvl10");
     if(button != null){
       button.clicked += () => {SceneManager.LoadScene(lvl10SceneName);}; 
-    } 
-   }
+    }
+
+    button = _doc.rootVisualElement.Q<Button>("BtnLvl11");
+    if (button != null)
+    {
+        button.clicked += () => { SceneManager.LoadScene(lvl11SceneName); };
+    }
+    }
 
 }

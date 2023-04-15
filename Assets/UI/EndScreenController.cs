@@ -28,13 +28,13 @@ public class EndScreenController : MonoBehaviour
 
       string detailText;
       if(player1score == player2score){
-         detailText = string.Format("You are both winners!");
+         detailText = string.Format("you are both winners!");
       }else if(player1score > player2score){
          // player 1 wins
-         detailText = string.Format("If this would be a contest, player {0} would have won", 1);
+         detailText = string.Format("if this would be a contest, player {0} would have won", 1);
       }else {
          // player 2 wins
-         detailText = string.Format("If this would be a contest, player {0} would have won", 2);
+         detailText = string.Format("if this would be a contest, player {0} would have won", 2);
       }
 
       _labelDetailsText.text = detailText;

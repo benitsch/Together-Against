@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1074223979275029577, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
       propertyPath: useKey
-      value: 13
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 1074223979275029577, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
       propertyPath: downKey
@@ -26,6 +26,10 @@ PrefabInstance:
     - target: {fileID: 1074223979275029577, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
       propertyPath: playerID
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074223979275029577, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
+      propertyPath: throwKey
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 1074223979275029577, guid: 78ee65acebc2b8f4ea700941bea37921, type: 3}
       propertyPath: moveLeftKey
