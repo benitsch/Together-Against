@@ -20,6 +20,8 @@ public class Pickup : MonoBehaviour
     [ReadOnly, SerializeField] private PlayerController pickedUpBy = null;
     Rigidbody2D body = null;
 
+    PlayerController myPc;
+
     public Transform bottomLocation = null;
     TargetJoint2D joint = null;
     public Collider2D coll { get; private set; } = null;
@@ -28,6 +30,7 @@ public class Pickup : MonoBehaviour
     public float forceBreak = 1000;
     private void Awake()
     {
+        myPc = GetComponent<PlayerController>();
         coll = GetComponent<Collider2D>();
         body = GetComponent<Rigidbody2D>();
     }
@@ -59,16 +62,13 @@ public class Pickup : MonoBehaviour
         //joint.enableCollision = false;
         coll.enabled = false;
         joint.maxForce = maxForce;
+        joint.breakForce = forceBreak;
         CancelInvoke();
         Invoke("ReenableCollision", 1f);
     }
 
     private void OnJointBreak2D(Joint2D joint)
     {
-        if(pickedUpBy == null)
-        {
-            return;
-        }
         FinalizeDropped(DropType.BrokeFree);
     }
 
@@ -79,11 +79,6 @@ public class Pickup : MonoBehaviour
 
     public bool Drop(PlayerController pc, Vector2 dropLocation)
     {
-        if(pickedUpBy != pc)
-        {
-            return false;
-        }
-        pickedUpBy = null;
         joint.target = dropLocation;
         CancelInvoke("ReenableCollision");
         Invoke("PostDropAnimation", 0.5f);
@@ -110,6 +105,11 @@ public class Pickup : MonoBehaviour
     void FinalizeDropped(DropType dropType)
     {
         CancelInvoke("FinalizeDropped");
+        if (myPc)
+        {
+            myPc.pickedUpItem = null;
+        }
+        pickedUpBy.pickedUpItem = null;
         pickedUpBy = null;
         coll.enabled = true;
         GameObject.Destroy(joint);

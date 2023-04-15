@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public delegate void OnUseKeyPressedDelegate();
 public class PlayerController : MonoBehaviour
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     public OnUseKeyPressedDelegate OnUseKeyPressed;
 
-    [ReadOnly, SerializeField] private Pickup pickedUpItem = null;
+    public Pickup pickedUpItem = null;
     public Transform pickupSlotLocation;
     public Transform pickupScanLocation;
     [Range(0.1f, 1.0f)] public float pickupScanRadius;
@@ -95,6 +96,11 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(throwKey))
         {
             ThrowHeldObject();
+        }
+
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            SceneManager.SetActiveScene(SceneManager.GetActiveScene());
         }
     }
 
