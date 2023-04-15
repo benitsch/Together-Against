@@ -18,6 +18,12 @@ public class MovingPlatform : Activateable
     
     private Vector2 targetPos;
 
+    private Rigidbody2D body;
+
+    private void Awake()
+    {
+        body = GetComponent<Rigidbody2D>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +43,7 @@ public class MovingPlatform : Activateable
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!IsActivated) {
             return;
@@ -52,14 +58,14 @@ public class MovingPlatform : Activateable
             targetPos = posA.position;
         }
 
-        transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+        body.MovePosition(Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            collision.transform.SetParent(this.transform);
+            //collision.transform.SetParent(this.transform);
         }
     }
 
@@ -67,7 +73,7 @@ public class MovingPlatform : Activateable
     {
         if (collision.CompareTag("Player"))
         {
-            collision.transform.SetParent(null);
+            //collision.transform.SetParent(null);
         }
     }
 
