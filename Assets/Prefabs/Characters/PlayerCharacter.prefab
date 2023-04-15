@@ -311,6 +311,7 @@ MonoBehaviour:
   downKey: 115
   useKey: 101
   throwKey: 102
+  playerID: 0
   movementControlsLocked: 0
   pickedUpItem: {fileID: 0}
   pickupSlotLocation: {fileID: 1187182804909944127}
@@ -341,7 +342,7 @@ MonoBehaviour:
   groundCheckRadius: 0.301
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1224
+    m_Bits: 1736
   canEverJump: 1
   animator: {fileID: 0}
 --- !u!50 &8633713224930894646
@@ -394,6 +395,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 1479200189748812058, guid: e3ff28473cadf2b4fa4677a1791b387b, type: 3}
+  canRespawn: 1
+  respawnTime: 3
 --- !u!114 &2158971588077153365
 MonoBehaviour:
   m_ObjectHideFlags: 0
