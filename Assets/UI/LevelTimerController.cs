@@ -69,8 +69,7 @@ public class LevelTimerController : MonoBehaviour
    }
 
    private void OnPlayerReachedFinish(int playerId, float newTimeLeft){
-     // TODO: param and assignment commented out to avoid compiler error
-     //timeLeft = newTimeLeft;
+     timeLeft = newTimeLeft;
    }
 
 }
