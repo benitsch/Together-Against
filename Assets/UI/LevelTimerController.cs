@@ -65,12 +65,11 @@ public class LevelTimerController : MonoBehaviour
    }
 
    private void TimerElapsed(){
-     GameEventManager.Instance.OnLevelTimeEnded();
+     GameEventManager.Instance.LevelTimeEnded();
    }
 
    private void OnPlayerReachedFinish(int playerId, float newTimeLeft){
-     // TODO: param and assignment commented out to avoid compiler error
-     //timeLeft = newTimeLeft;
+     timeLeft = newTimeLeft;
    }
 
 }
