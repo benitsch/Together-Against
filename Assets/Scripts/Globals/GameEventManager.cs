@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum PlayerScoreReason
 {
@@ -22,7 +23,7 @@ public class GameEventManager : Singleton<GameEventManager>
     public OnPlayerEventDelegate OnPlayerScoreEvent;
     public OnPlayerEventDelegate OnPlayerReachedFinish;
     public OnGenericEventDelegate OnLevelTimeEnded;
-    public OnGenericEventDelegate ChangeToNextLevel;
+    public OnGenericEventDelegate NotifyPlayLevelTransition;
 
     public bool Player1ReachedFinish = false;
     public bool Player2ReachedFinish = false;
@@ -33,6 +34,11 @@ public class GameEventManager : Singleton<GameEventManager>
     {
         OnLevelTimeEnded?.Invoke();
         ClearDelegates();
+    }
+
+    public void ChangeLevel(int nextLevel)
+    {
+        SceneManager.LoadScene(nextLevel);
     }
 
     private void ClearDelegates()
