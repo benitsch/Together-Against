@@ -59,9 +59,7 @@ public class Pickup : MonoBehaviour
         //joint.enableCollision = false;
         coll.enabled = false;
         joint.maxForce = maxForce;
-        CancelInvoke("ReenableCollision");
-        CancelInvoke("PostDropAnimation");
-        CancelInvoke("FinalizeDropped");
+        CancelInvoke();
         Invoke("ReenableCollision", 1f);
     }
 
