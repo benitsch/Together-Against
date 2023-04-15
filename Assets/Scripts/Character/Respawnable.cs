@@ -13,7 +13,7 @@ public class Respawnable : Damageable
 
     private void Start()
     {
-        pos = transform.position;    
+        pos = transform.position;
     }
 
     public override void Damage_Implementation()
@@ -28,12 +28,9 @@ public class Respawnable : Damageable
 
     private void SetRespawn()
     {
-        if(!canRespawn)
-        {
-            return;
-        }
-        GameObject deathParticle = Instantiate(particle, transform.position, Quaternion.identity);
-        Destroy(deathParticle, 2);
+        if(!canRespawn) return;
+
+        Destroy(Instantiate(particle, transform.position, Quaternion.identity), 3);
         gameObject.SetActive(false);
         Invoke("Respawn", respawnTime);
     }
