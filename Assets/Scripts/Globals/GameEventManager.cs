@@ -11,7 +11,7 @@ public enum PlayerScoreReason
     Conveyor,
     ReachedFinish
 }
-public delegate void OnPlayerEventDelegate(int playerID);
+public delegate void OnPlayerScoreEventDelegate(int player1score, int player2score);
 public delegate void OnFloatEventDelegate(int playerID, float newRemainingTime);
 public delegate void OnGenericEventDelegate();
 public class GameEventManager : Singleton<GameEventManager>
@@ -20,7 +20,7 @@ public class GameEventManager : Singleton<GameEventManager>
 
     private static GameEventManager instance;
 
-    public OnPlayerEventDelegate OnPlayerScoreEvent;
+    public OnPlayerScoreEventDelegate OnPlayerScoreEvent;
     public OnFloatEventDelegate OnPlayerReachedFinish;
     public OnGenericEventDelegate OnLevelTimeEnded;
     public OnGenericEventDelegate NotifyPlayLevelTransition;
@@ -92,7 +92,7 @@ public class GameEventManager : Singleton<GameEventManager>
                 }
                 break;
         }
-        OnPlayerScoreEvent?.Invoke(playerID);
+        OnPlayerScoreEvent?.Invoke(Player1Score, Player2Score);
     }
 
     public void PlayerReachedFinish(int playerID)
