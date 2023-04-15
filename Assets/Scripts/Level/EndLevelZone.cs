@@ -14,6 +14,6 @@ public class EndLevelZone : MonoBehaviour
             return;
         }
         GameEventManager.Instance.PlayerReachedFinish(pc.playerID);
-        pc.movementControlsLocked = true;
+        pc.LockMoveControls();
     }
 }

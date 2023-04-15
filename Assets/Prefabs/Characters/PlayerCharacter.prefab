@@ -330,6 +330,7 @@ MonoBehaviour:
   pickupSlotLocation: {fileID: 1187182804909944127}
   pickupScanLocation: {fileID: 6931700287817149297}
   pickupScanRadius: 1
+  ThrowVelocity: 3
   pickupsLayerMask:
     serializedVersion: 2
     m_Bits: 1032

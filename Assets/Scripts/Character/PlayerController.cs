@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     [Range(0, 1)] public int playerID = 0;
 
-    [ReadOnly] public bool movementControlsLocked = false;
+    [ReadOnly] public int movementControlsLockCounter = 0;
 
     public OnUseKeyPressedDelegate OnUseKeyPressed;
 
@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     public Transform pickupSlotLocation;
     public Transform pickupScanLocation;
     [Range(0.1f, 1.0f)] public float pickupScanRadius;
+
+    [Range(1f, 20f)]
+    public float ThrowVelocity = 20f;
 
     public LayerMask pickupsLayerMask;
     public LayerMask interactableLayerMask;
@@ -36,7 +39,7 @@ public class PlayerController : MonoBehaviour
         if(myPickup)
         {
             myPickup.OnPickedUp += NotifyPickedUp;
-            myPickup.OnDropped += NotifySelfDropped;
+            myPickup.OnNoLongerPickedUp += NotifyNoLongerPickedUp;
         }
         movement = GetComponent<CharacterMovement>();
         if(movement == null)
@@ -45,19 +48,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void NotifyPickedUp(Pickup pickedUpItem)
+    public void LockMoveControls()
     {
-        movementControlsLocked = true;
+        movementControlsLockCounter++;
     }
 
-    private void NotifySelfDropped(Pickup pickup, DropType dropType)
+    public void UnlockMoveControls()
     {
-        movementControlsLocked = false;
+        movementControlsLockCounter--;
+    }
+    private void NotifyNoLongerPickedUp(Pickup pickedUpItem, DropType dropType)
+    {
+        movementControlsLockCounter++;
+    }
+
+    private void NotifyPickedUp(Pickup pickedUpItem)
+    {
+        movementControlsLockCounter--;
     }
 
     private void Update()
     {
-        float horizontal = movementControlsLocked ? 0 : (Input.GetKey(moveRightKey) ? 1 : 0) + (Input.GetKey(moveLeftKey) ? -1 : 0);
+        float horizontal = movementControlsLockCounter > 0 ? 0 : (Input.GetKey(moveRightKey) ? 1 : 0) + (Input.GetKey(moveLeftKey) ? -1 : 0);
         movement.AddMovementInput(new Vector2(horizontal, 0));
 
         if (Input.GetKeyDown(upKey))
@@ -89,6 +101,11 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+
+        Vector2 throwVelocity = new Vector2(transform.right.x * ThrowVelocity, ThrowVelocity);
+        pickedUpItem.Throw(throwVelocity);
+        pickedUpItem = null;
+        return;
     }
     bool DropHeldItem()
     {

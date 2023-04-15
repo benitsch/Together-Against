@@ -26,14 +26,32 @@ public class CharacterMovement : MonoBehaviour
     private bool wantsToJump = false;
 
     public Animator animator;
+    [ReadOnly, SerializeField] private Pickup myPickup;
+    [ReadOnly, SerializeField] private bool isPickedUp = false;
 
-    protected int lockMovementCounter = 0;
+    [ReadOnly, SerializeField] protected int lockMovementCounter = 0;
 
     private void Awake()
     {
+        myPickup = GetComponent<Pickup>();
+        if(myPickup)
+        {
+            myPickup.OnPickedUp += NotifyPickedUp;
+            myPickup.OnNoLongerPickedUp += NotifyNoLongerPickedUp;
+        }
         animator = GetComponentInChildren<Animator>();
         body = GetComponentInChildren<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
+
+    private void NotifyNoLongerPickedUp(Pickup pickedUpItem, DropType dropType)
+    {
+        isPickedUp = false;
+    }
+
+    private void NotifyPickedUp(Pickup pickedUpItem)
+    {
+        isPickedUp = true;
     }
 
     private void Start()
@@ -56,7 +74,7 @@ public class CharacterMovement : MonoBehaviour
 
     public bool IsMovementLocked()
     {
-        return lockMovementCounter > 0;
+        return isPickedUp || lockMovementCounter > 0;
     }
 
     // Update is called once per frame
@@ -82,7 +100,6 @@ public class CharacterMovement : MonoBehaviour
     {
         if(IsMovementLocked())
         {
-            wantsToJump = false;
             movementInput = Vector2.zero;
             return;
         }
@@ -109,11 +126,14 @@ public class CharacterMovement : MonoBehaviour
         {
             if (IsGrounded())
             {
+                if (isPickedUp)
+                {
+                    myPickup.BreakFree();
+                }
                 velocity += new Vector2(0, jumpForce);
             }
-            //rb.AddForce(new Vector2(0, jumpForce * 100));
-            wantsToJump = false;
         }
+        wantsToJump = false;
 
         body.velocity = Vector3.SmoothDamp(body.velocity, velocity, ref currentVelocity, movementSmoothing);
 
