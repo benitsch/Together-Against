@@ -118,6 +118,8 @@ public class CharacterMovement : MonoBehaviour
 
         bool isGrounded = IsGrounded();
 
+        animator.SetBool("inAir", !isGrounded);
+
         if (movementInput.x != 0 && movementInput.x != previousMovementInput.x)
         {
             transform.rotation = movementInput.x > 0 ? Quaternion.Euler(0, 0f, 0) : Quaternion.Euler(0, 180f, 0);
