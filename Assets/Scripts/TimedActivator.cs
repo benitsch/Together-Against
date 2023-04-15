@@ -6,7 +6,10 @@ using UnityEngine;
 public class TimedActivator : Interactable
 {
     [Range(0.5f, 30f)]
-    public float Intervall = 5.0f;
+    public float ActiveDuration = 5.0f;
+
+    [Range(0.5f, 30f)]
+    public float InactiveDuration = 5.0f;
 
     public bool startActive = false;
     [ReadOnly] public bool isActive = false;
@@ -19,12 +22,13 @@ public class TimedActivator : Interactable
     void Start()
     {
         //start immediately
-        InvokeRepeating("TriggerTimer", Intervall, Intervall);
+        Invoke("TriggerTimer", isActive ? ActiveDuration : InactiveDuration);
     }
 
     void TriggerTimer()
     {
         isActive = !isActive;
         SetActiveState(isActive);
+        Invoke("TriggerTimer", isActive ? ActiveDuration : InactiveDuration);
     }
 }
