@@ -11,6 +11,7 @@ public enum PlayerScoreReason
     ReachedFinish
 }
 public delegate void OnPlayerEventDelegate(int playerID);
+public delegate void OnFloatEventDelegate(int playerID, float newRemainingTime);
 public delegate void OnGenericEventDelegate();
 public class GameEventManager : Singleton<GameEventManager>
 {
@@ -96,6 +97,14 @@ public class GameEventManager : Singleton<GameEventManager>
 
     public void PlayerReachedFinish(int playerID)
     {
+        if(playerID == 0)
+        {
+            Player1ReachedFinish = true;
+        }
+        if(playerID == 1)
+        {
+            Player1ReachedFinish = true;
+        }
         OnPlayerReachedFinish?.Invoke(playerID);
     }
 }
