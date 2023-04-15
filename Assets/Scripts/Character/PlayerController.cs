@@ -33,8 +33,11 @@ public class PlayerController : MonoBehaviour
 
     CharacterMovement movement;
 
+    Rigidbody2D myBody;
+
     private void Awake()
     {
+        myBody = GetComponent<Rigidbody2D>();
         Pickup myPickup = GetComponent<Pickup>();
         if(myPickup)
         {
@@ -102,7 +105,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        Vector2 throwVelocity = new Vector2(transform.right.x * ThrowVelocity, ThrowVelocity);
+        Vector2 throwVelocity = new Vector2(transform.right.x * ThrowVelocity + myBody.velocity.x, ThrowVelocity + myBody.velocity.y);
         pickedUpItem.Throw(throwVelocity);
         pickedUpItem = null;
         return;

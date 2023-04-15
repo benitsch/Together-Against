@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4695850495567426002}
   - component: {fileID: 7575943660139059880}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: WallHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
