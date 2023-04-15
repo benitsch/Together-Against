@@ -38,6 +38,9 @@ public class GameEventManager : Singleton<GameEventManager>
 
     public void ChangeLevel(int nextLevel)
     {
+        ClearDelegates();
+        Player1ReachedFinish = false;
+        Player2ReachedFinish = false;
         SceneManager.LoadScene(nextLevel);
     }
 
@@ -102,9 +105,18 @@ public class GameEventManager : Singleton<GameEventManager>
             Player1ReachedFinish = true;
         }
         OnPlayerReachedFinish?.Invoke(playerID);
-        if(Player1ReachedFinish && Player2ReachedFinish)
+        if(HaveBothFinishedLevel())
         {
 
         }
+        else
+        {
+            OnPlayerReachedFinish?.Invoke(playerID);
+        }
+    }
+
+    bool HaveBothFinishedLevel()
+    {
+        return Player1ReachedFinish && Player2ReachedFinish;
     }
 }
