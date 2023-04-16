@@ -3,6 +3,7 @@ A Unity game which was developed in the [2nd HüttenJam](https://xn--httenjam-65
 
 **Thema:** Extreme Conditions
 
+Together Against is a 2D competitive Co-op platformer where teamwork and betrayal collide! In this game, you and your partner must work together to reach a common goal, but be warned - points are also awarded for sabotaging your partner's progress! Will you choose to cooperate or compete?
 
 **Instructions:**
 
