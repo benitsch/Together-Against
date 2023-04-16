@@ -4,7 +4,7 @@ A Unity game which was developed in the [2nd HüttenJam](https://xn--httenjam-65
 **Thema:** Extreme Conditions
 
 
-####Instructions:
+**Instructions:**
 
 ###### Player 1:
 + **A** and **D** - Movement
