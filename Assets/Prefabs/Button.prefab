@@ -98,10 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e458804ce298e3443af535213420b998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Activateables: []
+  Activateables:
+  - {fileID: 0}
   onSprite: {fileID: 21300000, guid: 31330dd89d272bc42a53859cb9d6346c, type: 3}
   offSprite: {fileID: 21300000, guid: 68d2f33e1f867fe44818091f9ff491d2, type: 3}
-  pressSound: {fileID: 8300000, guid: e515ab3d6890c604689f3f645ee9fb0a, type: 3}
+  pressSound: {fileID: 8300000, guid: 85c804c647bd82b4f9576b4c2767f44e, type: 3}
   staysPressed: 0
   triggeringObjects:
     serializedVersion: 2

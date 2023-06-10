@@ -76,7 +76,7 @@ MonoBehaviour:
   - {fileID: 0}
   spriteStateOff: {fileID: 21300000, guid: ad07f315fb49df44caa2609f034fc399, type: 3}
   spriteStateOn: {fileID: 21300000, guid: 205da61f141fdfe4dbab05ac9ffcdbbc, type: 3}
-  audioTrigger: {fileID: 8300000, guid: 48a03abbc142caac6bcacd3b6e0ef699, type: 3}
+  audioTrigger: {fileID: 8300000, guid: ae3e0727e3aef9241ba4120a261807b9, type: 3}
 --- !u!212 &8760252440960948380
 SpriteRenderer:
   m_ObjectHideFlags: 0
